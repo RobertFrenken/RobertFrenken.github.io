@@ -21,7 +21,7 @@ repository               : "RobertFrenken/RobertFrenken.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.png"
+  avatar           : "OSU_pic.jpg"
   name             : "Robert Frenken"
   pronouns         : # example: "she/her"  
   bio              : "ISE PhD Student at The Ohio State University"
