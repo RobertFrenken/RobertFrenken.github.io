@@ -241,7 +241,7 @@ defaults:
     values:
       layout: single
       author_profile: true
-      share: true
+      share: False
       comments: true
   # _publications
   - scope:
@@ -268,7 +268,7 @@ defaults:
     values:
       layout: talk
       author_profile: true
-      share: true
+      share: False
 
 
 # Sass/SCSS
