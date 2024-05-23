@@ -6,6 +6,5 @@ redirect_from:
   - /about/
   - /about.html
 ---
-About Me
 ======
 PhD Student at The Ohio State University
