@@ -7,4 +7,5 @@ redirect_from:
   - /about.html
 ---
 
-PhD Student at The Ohio State University
+PhD Student at The Ohio State University.
+Working at the Center for Automotive Research (CAR)
