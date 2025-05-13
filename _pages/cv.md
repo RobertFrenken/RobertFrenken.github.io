@@ -11,9 +11,9 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* Ph.D in Industrial & Systems Engineering, The Ohio State University, 2027 (expected)
+* M.S. in Industrial & Systems Engineering, The Ohio State University, 2024
+* B.S. in Industrial & Systems Engineering, The Ohio State University, 2021
 
 Work experience
 ======
@@ -61,4 +61,4 @@ Teaching
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* ITSC 2025 Reviewer
