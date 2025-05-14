@@ -27,3 +27,5 @@ through a two-phase procedure involving supervised pretraining
 and knowledge distillation with soft and hard label supervision.
 Experiments were conducted on three benchmark datasets: Car-Hacking, Car-Survival, and can-train-and-test. Initial results in Car-Hacking and Car-Survival see both the teacher and student perform well, with the student model in particular achieving
 over achieve 99.97% and 99.31% accuracy, respectively. While train and validation results were promising, the significant class imbalance in the can-train-and-test dataset caused both models to under perform. Future research will need to be conducted to tackle the class imbalance.
+
+![KD-GAT Architecture](../images/Graph-example.png)
