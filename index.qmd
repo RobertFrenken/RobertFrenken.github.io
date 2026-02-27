@@ -1,6 +1,6 @@
 ---
 title: "Robert Frenken"
-image: images/profile_pic.jpg
+image: images/profile_pic.png
 toc: false
 about:
   template: trestles
