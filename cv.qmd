@@ -1,0 +1,17 @@
+---
+title: "CV"
+---
+
+## Education
+
+- **Ph.D** in Industrial & Systems Engineering, The Ohio State University, 2027 (expected)
+- **M.S.** in Industrial & Systems Engineering, The Ohio State University, 2024
+- **B.S.** in Industrial & Systems Engineering, The Ohio State University, 2021
+
+## Publications
+
+See the [Research](research.qmd) page for a full list.
+
+## Service
+
+- ITSC 2025 Reviewer

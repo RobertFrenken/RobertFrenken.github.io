@@ -1,0 +1,29 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Robert Frenken"
+  description: "ISE PhD Student at The Ohio State University"
+  site-url: https://RobertFrenken.github.io
+  navbar:
+    left:
+      - text: Research
+        href: research.qmd
+      - text: Posts
+        href: posts.qmd
+      - text: CV
+        href: cv.qmd
+    right:
+      - icon: github
+        href: https://github.com/RobertFrenken
+      - icon: envelope
+        href: mailto:frenken.2@osu.edu
+  page-footer:
+    center: |
+      Built with [Quarto](https://quarto.org/) · © 2025 Robert Frenken
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css

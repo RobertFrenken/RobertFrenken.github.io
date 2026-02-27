@@ -1,0 +1,32 @@
+---
+title: "Robert Frenken"
+image: images/OSU_pic.jpg
+toc: false
+about:
+  template: trestles
+  image-shape: round
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/RobertFrenken
+    - icon: envelope
+      text: Email
+      href: mailto:frenken.2@osu.edu
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/robert-frenken-831064144/
+---
+
+PhD Student at The Ohio State University, working at the Center for Automotive Research (CAR).
+
+## Research Interests
+
+- Autonomous vehicles
+- Machine learning in automotive applications
+- Federated Learning
+
+## Education
+
+- **Ph.D** in Industrial & Systems Engineering, The Ohio State University, 2027 (expected)
+- **M.S.** in Industrial & Systems Engineering, The Ohio State University, 2024
+- **B.S.** in Industrial & Systems Engineering, The Ohio State University, 2021
