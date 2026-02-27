@@ -1,6 +1,6 @@
 ---
 title: "Robert Frenken"
-image: images/OSU_pic.jpg
+image: images/profile_pic.jpg
 toc: false
 about:
   template: trestles
@@ -14,7 +14,7 @@ about:
       href: mailto:frenken.2@osu.edu
     - icon: linkedin
       text: LinkedIn
-      href: https://www.linkedin.com/in/robert-frenken-831064144/
+      href: https://www.linkedin.com/in/robert-frenken/
 ---
 
 PhD Student at The Ohio State University, working at the Center for Automotive Research (CAR).
