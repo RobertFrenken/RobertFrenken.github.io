@@ -23,16 +23,15 @@ format:
   #text(size: 18pt, weight: "bold")[Robert A. Frenken] \
   #v(3pt)
   #text(size: 9pt)[
-    #fa-icon("envelope") #link("mailto:frenken.2@osu.edu")[frenken.2\@osu.edu]
-    #h(0.8em) #fa-icon("phone") (614) 440-2474
-    #h(0.8em) #fa-icon("map-marker") Columbus, OH
+    #fa-envelope() #link("mailto:frenken.2@osu.edu")[frenken.2\@osu.edu]
+    #h(0.8em) #fa-location-dot() Columbus, OH
+    #h(0.8em) #fa-globe() #link("https://robertfrenken.github.io")[robertfrenken.github.io]
   ]
   #v(2pt)
   #text(size: 9pt)[
-    #fa-icon("github", font: "Font Awesome 6 Brands") #link("https://github.com/RobertFrenken")[RobertFrenken]
-    #h(0.8em) #fa-icon("linkedin", font: "Font Awesome 6 Brands") #link("https://www.linkedin.com/in/robert-frenken/")[LinkedIn]
-    #h(0.8em) #fa-icon("google", font: "Font Awesome 6 Brands") #link("https://scholar.google.com/citations?user=_VbkYiwAAAAJ")[Google Scholar]
-    #h(0.8em) #fa-icon("globe") #link("https://robertfrenken.github.io")[robertfrenken.github.io]
+    #fa-github() #link("https://github.com/RobertFrenken")[GitHub]
+    #h(0.8em) #fa-linkedin() #link("https://www.linkedin.com/in/robert-frenken/")[LinkedIn]
+    #h(0.8em) #fa-graduation-cap() #link("https://scholar.google.com/citations?user=_VbkYiwAAAAJ")[Google Scholar]
   ]
 ]
 

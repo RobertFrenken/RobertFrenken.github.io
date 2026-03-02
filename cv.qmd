@@ -15,7 +15,7 @@ format:
 
 ::: {.content-visible when-format="typst"}
 **Robert A. Frenken**
-frenken.2@osu.edu | Columbus, OH | (614) 440-2474
+frenken.2@osu.edu | Columbus, OH
 :::
 
 [Download CV (PDF)](Frenken_Robert_CV.pdf){.btn .btn-outline-primary .btn-sm}
