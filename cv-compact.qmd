@@ -12,26 +12,26 @@ format:
 ---
 
 ```{=typst}
-#import "@preview/fontawesome:0.1.0": *
-
 // Color theme
 #let accent = rgb("#bb0000")
 #let link-color = rgb("#333333")
 
-// Custom header — name centered, icon contact row
+// Custom header — name centered, contact row with unicode symbols
 #align(center)[
   #text(size: 18pt, weight: "bold")[Robert A. Frenken] \
   #v(3pt)
   #text(size: 9pt)[
-    #fa-envelope() #link("mailto:frenken.2@osu.edu")[frenken.2\@osu.edu]
-    #h(0.8em) #fa-location-dot() Columbus, OH
-    #h(0.8em) #fa-globe() #link("https://robertfrenken.github.io")[robertfrenken.github.io]
+    ✉ #link("mailto:frenken.2@osu.edu")[frenken.2\@osu.edu]
+    #h(0.8em) 📍 Columbus, OH
+    #h(0.8em) 🌐 #link("https://robertfrenken.github.io")[robertfrenken.github.io]
   ]
   #v(2pt)
   #text(size: 9pt)[
-    #fa-github() #link("https://github.com/RobertFrenken")[GitHub]
-    #h(0.8em) #fa-linkedin() #link("https://www.linkedin.com/in/robert-frenken/")[LinkedIn]
-    #h(0.8em) #fa-graduation-cap() #link("https://scholar.google.com/citations?user=_VbkYiwAAAAJ")[Google Scholar]
+    #link("https://github.com/RobertFrenken")[GitHub]
+    #h(0.6em) · #h(0.6em)
+    #link("https://www.linkedin.com/in/robert-frenken/")[LinkedIn]
+    #h(0.6em) · #h(0.6em)
+    #link("https://scholar.google.com/citations?user=_VbkYiwAAAAJ")[Google Scholar]
   ]
 ]
 
