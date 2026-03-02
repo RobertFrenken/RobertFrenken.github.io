@@ -1,1 +1,60 @@
-/* Custom styles */
+/* CV entry layout: title with right-aligned date */
+.cv-entry + p {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-top: -0.5rem;
+}
+
+.cv-entry + p em:first-child {
+  color: var(--bs-secondary);
+}
+
+/* Typography refinements */
+h2 {
+  border-bottom: 2px solid #bb0000;
+  padding-bottom: 0.3rem;
+  margin-top: 2rem;
+}
+
+h3.cv-entry {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Navbar scarlet accent */
+.navbar {
+  border-bottom: 3px solid #bb0000;
+}
+
+/* Download button */
+.btn-outline-primary {
+  color: #bb0000;
+  border-color: #bb0000;
+  margin-bottom: 1.5rem;
+}
+
+.btn-outline-primary:hover {
+  background-color: #bb0000;
+  border-color: #bb0000;
+  color: #fff;
+}
+
+/* Lists in CV */
+main ul {
+  margin-bottom: 1rem;
+}
+
+main li {
+  line-height: 1.6;
+}
+
+/* Publication list */
+main ol {
+  padding-left: 1.5rem;
+}
+
+main ol li {
+  margin-bottom: 0.75rem;
+}

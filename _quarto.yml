@@ -1,6 +1,8 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - "*.pdf"
 
 website:
   title: "Robert Frenken"
@@ -25,5 +27,5 @@ website:
 
 format:
   html:
-    theme: cosmo
+    theme: litera
     css: styles.css

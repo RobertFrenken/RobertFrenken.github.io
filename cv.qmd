@@ -1,17 +1,116 @@
 ---
-title: "CV"
+title: "Curriculum Vitae"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+  typst:
+    output-file: "Frenken_Robert_CV.pdf"
+    margin:
+      x: 1in
+      y: 0.75in
+    fontsize: 11pt
 ---
+
+::: {.content-visible when-format="typst"}
+**Robert Frenken**
+frenken.2@osu.edu | Columbus, OH
+:::
+
+[Download CV (PDF)](Frenken_Robert_CV.pdf){.btn .btn-outline-primary .btn-sm}
 
 ## Education
 
-- **Ph.D** in Industrial & Systems Engineering, The Ohio State University, 2027 (expected)
-- **M.S.** in Industrial & Systems Engineering, The Ohio State University, 2024
-- **B.S.** in Industrial & Systems Engineering, The Ohio State University, 2021
+### Ph.D. in Industrial & Systems Engineering {.cv-entry}
+*The Ohio State University* | 2024 -- Present (Expected 2027)
+GPA: 3.82/4.0
+
+### M.S. in Industrial & Systems Engineering {.cv-entry}
+*The Ohio State University* | 2021 -- 2024
+GPA: 3.82/4.0
+
+### B.S. in Industrial & Systems Engineering {.cv-entry}
+*The Ohio State University* | 2016 -- 2021
+GPA: 3.61/4.0
+
+## Professional Experience
+
+### Graduate Research Associate {.cv-entry}
+*Center for Automotive Research, The Ohio State University* | 2024 -- Present
+
+- Developing graph neural network-based intrusion detection systems for Controller Area Network (CAN) bus security
+- Designing knowledge distillation pipelines to compress multi-layer Graph Attention Networks into deployable student models
+- Building automated ML experimentation infrastructure with Ray, Weights & Biases, and SLURM on Ohio Supercomputer Center
+- Engineering a DuckDB-based analytics lakehouse for experiment tracking across 500+ hyperparameter configurations
+
+### Graduate Research Associate {.cv-entry}
+*Spine Research Institute, The Ohio State University* | 2021 -- 2024
+
+- Applied machine learning methods to biomechanical data for injury risk prediction
+- Developed predictive models for spinal loading during manual material handling tasks
+- Processed and analyzed motion capture and force plate data for large-scale ergonomic studies
+
+### Data Science Intern {.cv-entry}
+*Ford Motor Company* | Summer 2020
+
+- Developed predictive analytics models for vehicle quality improvement initiatives
+- Built automated data pipelines for manufacturing defect detection and classification
+- Presented findings to cross-functional engineering teams
+
+### Machine Learning Research Assistant {.cv-entry}
+*The Ohio State University* | 2020 -- 2021
+
+- Conducted research on machine learning applications for industrial systems optimization
+- Implemented and benchmarked deep learning models for time-series prediction tasks
+
+### Quality Systems Data Analyst Co-op {.cv-entry}
+*Momentive Performance Materials* | 2019
+
+- Analyzed manufacturing process data to identify root causes of quality deviations
+- Developed statistical process control dashboards for real-time quality monitoring
+- Automated data collection and reporting workflows, reducing manual effort by 30%
+
+### Project Engineering Co-op {.cv-entry}
+*DuPont* | 2018
+
+- Supported capital improvement projects totaling over $1M in facility upgrades
+- Conducted time studies and process analysis resulting in 10% efficiency improvement
+- Collaborated with operations teams to implement lean manufacturing improvements
 
 ## Publications
 
-See the [Research](research.qmd) page for a full list.
+1. **R. Frenken**, K. Rao, Q. Lin, and A. Saez-Trumper, "KD-GAT: Combining Knowledge Distillation and Graph Attention Transformer for a Controller Area Network Intrusion Detection System," in *Proc. IEEE International Conference on Intelligent Transportation Systems (ITSC)*, 2025. [PDF](files/IEEE_ITSC_2025-2.pdf)
+
+2. **R. Frenken**, K. Rao, Q. Lin, and A. Saez-Trumper, "Federated Knowledge Distillation for CAN Bus Intrusion Detection," submitted to *AAAI Conference on Artificial Intelligence*, 2026. *(Under review)*
+
+## Projects
+
+### CAIS Capstone Project {.cv-entry}
+*The Ohio State University*
+
+- Led team capstone project applying data science methods to real-world industrial problems
+
+### Webmaster {.cv-entry}
+*Buckeye Disc Golf Club, The Ohio State University*
+
+- Designed and maintained the club website
+
+## Skills
+
+### Coursework
+Machine Learning, Deep Learning, Statistical Learning, Optimization, Stochastic Models, Simulation, Data Mining, Computer Vision, Probability & Statistics
+
+### Technical
+**Languages:** Python, R, SQL, JavaScript, Bash | **ML/DL:** PyTorch, PyTorch Geometric, Ray, scikit-learn, Weights & Biases | **Data:** DuckDB, Pandas, NumPy, Apache Arrow | **Tools:** Git, SLURM, Docker, Quarto, D3.js | **Cloud/HPC:** Ohio Supercomputer Center, GitHub Actions
 
 ## Service
 
-- ITSC 2025 Reviewer
+- **Reviewer**, IEEE International Conference on Intelligent Transportation Systems (ITSC), 2025
+- **Reviewer**, AAAI Conference on Artificial Intelligence, 2025
+
+## Mentorship
+
+### Hanqin Zhang {.cv-entry}
+*Undergraduate Research Mentee, The Ohio State University*
+
+- Mentoring undergraduate researcher on graph neural network methods for CAN bus intrusion detection

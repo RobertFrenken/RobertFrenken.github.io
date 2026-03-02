@@ -15,18 +15,15 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/robert-frenken/
+    - icon: file-earmark-pdf
+      text: CV (PDF)
+      href: Frenken_Robert_CV.pdf
 ---
 
-PhD Student at The Ohio State University, working at the Center for Automotive Research (CAR).
+PhD student in Industrial & Systems Engineering at The Ohio State University, working at the Center for Automotive Research (CAR). My research focuses on graph neural network-based intrusion detection for in-vehicle networks, with an emphasis on knowledge distillation for deploying lightweight models on resource-constrained automotive platforms.
 
 ## Research Interests
 
-- Autonomous vehicles
-- Machine learning in automotive applications
-- Federated Learning
-
-## Education
-
-- **Ph.D** in Industrial & Systems Engineering, The Ohio State University, 2027 (expected)
-- **M.S.** in Industrial & Systems Engineering, The Ohio State University, 2024
-- **B.S.** in Industrial & Systems Engineering, The Ohio State University, 2021
+- Graph neural networks for cybersecurity in automotive systems
+- Knowledge distillation and model compression for edge deployment
+- Federated learning for privacy-preserving intrusion detection
