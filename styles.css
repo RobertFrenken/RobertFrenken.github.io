@@ -15,12 +15,12 @@
 h2 {
   border-bottom: 2px solid #bb0000;
   padding-bottom: 0.3rem;
-  margin-top: 2rem;
+  margin-top: 1.2rem;
 }
 
 h3.cv-entry {
   font-size: 1.1rem;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
 }
 
 /* Navbar scarlet accent */
@@ -32,7 +32,7 @@ h3.cv-entry {
 .btn-outline-primary {
   color: #bb0000;
   border-color: #bb0000;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .btn-outline-primary:hover {
@@ -43,11 +43,11 @@ h3.cv-entry {
 
 /* Lists in CV */
 main ul {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 main li {
-  line-height: 1.6;
+  line-height: 1.4;
 }
 
 /* Publication list */
@@ -56,5 +56,10 @@ main ol {
 }
 
 main ol li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Reduce gap between cv-entry heading and its description paragraph */
+h3.cv-entry + p {
+  margin-bottom: 0.3rem;
 }

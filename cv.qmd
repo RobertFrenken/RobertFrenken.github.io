@@ -7,14 +7,15 @@ format:
   typst:
     output-file: "Frenken_Robert_CV.pdf"
     margin:
-      x: 1in
-      y: 0.75in
-    fontsize: 11pt
+      x: 0.6in
+      y: 0.5in
+    fontsize: 10pt
+    columns: 1
 ---
 
 ::: {.content-visible when-format="typst"}
-**Robert Frenken**
-frenken.2@osu.edu | Columbus, OH
+**Robert A. Frenken**
+frenken.2@osu.edu | Columbus, OH | (614) 440-2474
 :::
 
 [Download CV (PDF)](Frenken_Robert_CV.pdf){.btn .btn-outline-primary .btn-sm}
@@ -22,95 +23,86 @@ frenken.2@osu.edu | Columbus, OH
 ## Education
 
 ### Ph.D. in Industrial & Systems Engineering {.cv-entry}
-*The Ohio State University* | 2024 -- Present (Expected 2027)
-GPA: 3.82/4.0
+*The Ohio State University* | Columbus, OH | August 2021 -- Present
 
 ### M.S. in Industrial & Systems Engineering {.cv-entry}
-*The Ohio State University* | 2021 -- 2024
-GPA: 3.82/4.0
+*The Ohio State University* | Columbus, OH | May 2024
 
 ### B.S. in Industrial & Systems Engineering {.cv-entry}
-*The Ohio State University* | 2016 -- 2021
-GPA: 3.61/4.0
+*The Ohio State University* | Columbus, OH | May 2021
+
+**MS GPA: 3.83 / BS GPA: 3.63**
 
 ## Professional Experience
 
-### Graduate Research Associate {.cv-entry}
-*Center for Automotive Research, The Ohio State University* | 2024 -- Present
+### Graduate Research Assistant {.cv-entry}
+*Center for Automotive Research* | The Ohio State University | 2024 -- Present
 
-- Developing graph neural network-based intrusion detection systems for Controller Area Network (CAN) bus security
-- Designing knowledge distillation pipelines to compress multi-layer Graph Attention Networks into deployable student models
-- Building automated ML experimentation infrastructure with Ray, Weights & Biases, and SLURM on Ohio Supercomputer Center
-- Engineering a DuckDB-based analytics lakehouse for experiment tracking across 500+ hyperparameter configurations
+- Developing a classification model for distinguishing attack-free and malicious messages within a CAN bus system. This supervised ensemble model combines VGAE and GAT.
+- Created a federated learning testing bed configurable to be either centralized or decentralized, with the ability to change dataset, model, graph topology, and aggregation strategy. Part of a larger project to simulate edge devices and test model performance and convergence of non-IID data distributions.
 
-### Graduate Research Associate {.cv-entry}
-*Spine Research Institute, The Ohio State University* | 2021 -- 2024
+### Graduate Research Assistant {.cv-entry}
+*Spine Research Institute* | The Ohio State University | 2021 -- 2024
 
-- Applied machine learning methods to biomechanical data for injury risk prediction
-- Developed predictive models for spinal loading during manual material handling tasks
-- Processed and analyzed motion capture and force plate data for large-scale ergonomic studies
+- Created multiple supervised and unsupervised machine learning models to classify lower back pain from wearable data of over 1000 participants. The supervised ensemble CNN model was able to correctly classify low back pain patients and controls with 90% accuracy.
 
 ### Data Science Intern {.cv-entry}
-*Ford Motor Company* | Summer 2020
+*Ford Motor Co.* | Columbus, OH (Remote) | 2020
 
-- Developed predictive analytics models for vehicle quality improvement initiatives
-- Built automated data pipelines for manufacturing defect detection and classification
-- Presented findings to cross-functional engineering teams
+- Leveraged HPC tools (Spark, Hadoop, HIVE, SQL) and Python to query, merge, and aggregate trip data.
+- Developed a decision tree model analyzing the correlation between oil life efficiency and the rate of warranty repair.
 
 ### Machine Learning Research Assistant {.cv-entry}
-*The Ohio State University* | 2020 -- 2021
+*The Ohio State University* | Columbus, OH | 2020 -- 2021
 
-- Conducted research on machine learning applications for industrial systems optimization
-- Implemented and benchmarked deep learning models for time-series prediction tasks
+- Programmed web-scraping program to automate the extraction of weekly player metrics on FanDuel, pulling results into a building database. Data analysis including clustering and user sentiment analysis was conducted to help users make informed decisions when picking a lineup.
 
 ### Quality Systems Data Analyst Co-op {.cv-entry}
-*Momentive Performance Materials* | 2019
+*Momentive* | Columbus, OH | 2019
 
-- Analyzed manufacturing process data to identify root causes of quality deviations
-- Developed statistical process control dashboards for real-time quality monitoring
-- Automated data collection and reporting workflows, reducing manual effort by 30%
+- Created a data pipeline with Excel and Python to understand HVAC metrics, production yields, and machine reliability. Quality team continues using data pipeline to track manufacturing metrics.
 
 ### Project Engineering Co-op {.cv-entry}
-*DuPont* | 2018
+*DuPont* | Columbus, OH | 2018
 
-- Supported capital improvement projects totaling over $1M in facility upgrades
-- Conducted time studies and process analysis resulting in 10% efficiency improvement
-- Collaborated with operations teams to implement lean manufacturing improvements
+- Executed 12 capital projects, totaling over $1,000,000, on average saving 10% of projected budget.
+- Worked in cross functional teams to install roller lifts, pallet yards, and pumps, meeting schedule driven deadlines.
 
 ## Publications
 
-1. **R. Frenken**, K. Rao, Q. Lin, and A. Saez-Trumper, "KD-GAT: Combining Knowledge Distillation and Graph Attention Transformer for a Controller Area Network Intrusion Detection System," in *Proc. IEEE International Conference on Intelligent Transportation Systems (ITSC)*, 2025. [PDF](files/IEEE_ITSC_2025-2.pdf)
+1. **R Frenken**, SG Bhatti, H Zhang, Q Ahmed (2025) "[KD-GAT: Combining Knowledge Distillation and Graph Attention Transformer for a Controller Area Network Intrusion Detection System](https://scholar.google.com/citations?view_op=view_citation&hl=en&user=_VbkYiwAAAAJ&citation_for_view=_VbkYiwAAAAJ:u5HHmVD_uO8C)" *IEEE International Conference on Intelligent Transportation Systems (ITSC)* (to appear).
 
-2. **R. Frenken**, K. Rao, Q. Lin, and A. Saez-Trumper, "Federated Knowledge Distillation for CAN Bus Intrusion Detection," submitted to *AAAI Conference on Artificial Intelligence*, 2026. *(Under review)*
+2. **R Frenken**, SG Bhatti, H Zhang, Q Ahmed (2025) "Multi-Stage Knowledge-Distilled VGAE and GAT for Robust Controller-Area-Network Intrusion Detection" *Proceedings of AAAI 2026* (under review).
 
 ## Projects
 
-### CAIS Capstone Project {.cv-entry}
+### Center for AI Safety (CAIS) 2025 Capstone Project {.cv-entry}
+C Leet, **R Frenken**. Tacit Coordination: Coordination without Communication
+
+- Empirical investigation of how large language models (LLMs) interact in game-theoretic scenarios, including prisoner's dilemma, battle-of-the-sexes, and duopoly market scenarios.
+
+### Web Developer: Mobility Systems Lab Website {.cv-entry}
 *The Ohio State University*
 
-- Led team capstone project applying data science methods to real-world industrial problems
+- [https://osu-car-msl.github.io/lab-setup-guide/](https://osu-car-msl.github.io/lab-setup-guide/)
 
-### Webmaster {.cv-entry}
-*Buckeye Disc Golf Club, The Ohio State University*
-
-- Designed and maintained the club website
-
-## Skills
+## Skills & Training
 
 ### Coursework
-Machine Learning, Deep Learning, Statistical Learning, Optimization, Stochastic Models, Simulation, Data Mining, Computer Vision, Probability & Statistics
+High Performance Computing, Nonconvex Optimization, Computer Vision, Human Centered ML, Reinforcement Learning, Data Mining, Machine Learning, Data Structures & Algorithms, Database Design, Linear & Non Linear Programming, Statistics.
 
-### Technical
-**Languages:** Python, R, SQL, JavaScript, Bash | **ML/DL:** PyTorch, PyTorch Geometric, Ray, scikit-learn, Weights & Biases | **Data:** DuckDB, Pandas, NumPy, Apache Arrow | **Tools:** Git, SLURM, Docker, Quarto, D3.js | **Cloud/HPC:** Ohio Supercomputer Center, GitHub Actions
+### Computer & Technical
+Python, AWS, Azure, Java, SQL, MATLAB, HTML, CSS, Excel.
+
+### Additional
+Eagle Scout
 
 ## Service
 
-- **Reviewer**, IEEE International Conference on Intelligent Transportation Systems (ITSC), 2025
-- **Reviewer**, AAAI Conference on Artificial Intelligence, 2025
+- **Reviewer**, ITSC 2025
+- **Reviewer**, AAAI 2025
 
 ## Mentorship
 
 ### Hanqin Zhang {.cv-entry}
-*Undergraduate Research Mentee, The Ohio State University*
-
-- Mentoring undergraduate researcher on graph neural network methods for CAN bus intrusion detection
+January -- August 2025. Currently M.S. at Georgia Tech.
