@@ -16,6 +16,8 @@ website:
         href: research.qmd
       - text: Posts
         href: posts.qmd
+      - text: Tooling
+        href: tooling.qmd
       - text: CV
         href: Frenken_Robert_CV.pdf
     right:

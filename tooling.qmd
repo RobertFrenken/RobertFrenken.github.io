@@ -1,0 +1,269 @@
+---
+title: "Tooling"
+subtitle: "How I use Claude Code: tool call patterns across coding sessions"
+---
+
+```{ojs}
+//| echo: false
+//| output: false
+
+data = FileAttachment("data/tool-usage.json").json()
+
+// Color palette
+scarlet = "#bb0000"
+darkGray = "#333333"
+
+// Day labels for heatmap
+dayLabels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+```
+
+## Session Overview
+
+```{ojs}
+//| echo: false
+
+{
+  const s = data.session_stats;
+  const meta = data.meta;
+  const html = htl.html`<div class="stat-cards">
+    <div class="stat-card">
+      <div class="stat-value">${s.total_sessions.toLocaleString()}</div>
+      <div class="stat-label">Sessions</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">${meta.total_records.toLocaleString()}</div>
+      <div class="stat-label">Tool Calls</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">${s.median_calls}</div>
+      <div class="stat-label">Median Calls / Session</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">${s.max_calls}</div>
+      <div class="stat-label">Max Calls (Single Session)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">${s.mean_unique_tools}</div>
+      <div class="stat-label">Avg Unique Tools / Session</div>
+    </div>
+  </div>`;
+  return html;
+}
+```
+
+<p class="text-muted" style="font-size: 0.85rem;">
+Data spans ${data.meta.date_range.start} to ${data.meta.date_range.end} (${data.meta.total_records.toLocaleString()} tool calls across ${data.session_stats.total_sessions} sessions).
+</p>
+
+## Tool Usage Heatmap
+
+When and how often tools are called, by hour of day and day of week.
+
+```{ojs}
+//| echo: false
+
+Plot.plot({
+  marginLeft: 50,
+  marginBottom: 40,
+  padding: 0,
+  width: 700,
+  height: 240,
+  x: {
+    label: "Hour of Day (UTC)",
+    domain: d3.range(24),
+    tickFormat: d => `${d}:00`
+  },
+  y: {
+    label: null,
+    domain: d3.range(7),
+    tickFormat: d => dayLabels[d]
+  },
+  color: {
+    label: "Calls",
+    scheme: "reds",
+    type: "linear"
+  },
+  marks: [
+    Plot.cell(data.heatmap, {
+      x: "hour",
+      y: "day_of_week",
+      fill: "count",
+      inset: 1,
+      tip: true,
+      title: d => `${dayLabels[d.day_of_week]} ${d.hour}:00 — ${d.count} calls`
+    })
+  ]
+})
+```
+
+## Top Tools
+
+The 15 most-used tools, colored by source (built-in vs MCP server).
+
+```{ojs}
+//| echo: false
+
+{
+  const top15 = data.tool_counts.slice(0, 15).map(d => ({
+    ...d,
+    source: d.mcp_server ? d.mcp_server : "builtin",
+    short_tool: d.tool.replace("mcp__", "").replace(/__/g, ": ")
+  }));
+
+  return Plot.plot({
+    marginLeft: 180,
+    width: 700,
+    height: 400,
+    x: { label: "Call Count" },
+    y: {
+      label: null,
+      domain: top15.map(d => d.short_tool)
+    },
+    color: {
+      legend: true,
+      domain: [...new Set(top15.map(d => d.source))],
+    },
+    marks: [
+      Plot.barX(top15, {
+        x: "count",
+        y: "short_tool",
+        fill: "source",
+        sort: { y: "-x" },
+        tip: true
+      }),
+      Plot.ruleX([0])
+    ]
+  });
+}
+```
+
+## MCP Server Breakdown
+
+Tool calls to each MCP server, broken down by individual tool.
+
+```{ojs}
+//| echo: false
+
+{
+  const mcp = data.mcp_breakdown.map(d => ({
+    ...d,
+    short_tool: d.tool.replace(`mcp__${d.server}__`, "")
+  }));
+
+  return Plot.plot({
+    marginLeft: 160,
+    width: 700,
+    height: Math.max(300, mcp.length * 20),
+    x: { label: "Call Count" },
+    y: { label: null },
+    color: {
+      legend: true,
+      domain: [...new Set(mcp.map(d => d.server))]
+    },
+    marks: [
+      Plot.barX(mcp, {
+        x: "count",
+        y: "short_tool",
+        fill: "server",
+        sort: { y: "-x" },
+        tip: true
+      }),
+      Plot.ruleX([0])
+    ]
+  });
+}
+```
+
+## Daily Trend
+
+Total tool calls per day, stacked by source category.
+
+```{ojs}
+//| echo: false
+
+Plot.plot({
+  width: 700,
+  height: 300,
+  x: {
+    label: "Date",
+    type: "band"
+  },
+  y: { label: "Tool Calls" },
+  color: {
+    legend: true
+  },
+  marks: [
+    Plot.barY(data.daily_trend, {
+      x: "date",
+      y: "count",
+      fill: "server",
+      tip: true,
+      title: d => `${d.date} — ${d.server}: ${d.count}`
+    }),
+    Plot.ruleY([0])
+  ]
+})
+```
+
+## Project Breakdown
+
+Tool calls by project — where the work happens.
+
+```{ojs}
+//| echo: false
+
+{
+  const projects = data.project_breakdown;
+
+  return Plot.plot({
+    marginLeft: 140,
+    width: 700,
+    height: Math.max(250, projects.length * 28),
+    x: { label: "Call Count" },
+    y: { label: null },
+    marks: [
+      Plot.barX(projects, {
+        x: "count",
+        y: "project",
+        fill: scarlet,
+        sort: { y: "-x" },
+        tip: true
+      }),
+      Plot.ruleX([0])
+    ]
+  });
+}
+```
+
+## Knowledge Graph Usage
+
+Calls to the memory MCP server by operation type.
+
+```{ojs}
+//| echo: false
+
+{
+  const entities = data.entity_access.map(d => ({
+    ...d,
+    short: d.entity.replace("mcp__memory__", "")
+  }));
+
+  return Plot.plot({
+    marginLeft: 140,
+    width: 700,
+    height: Math.max(200, entities.length * 30),
+    x: { label: "Call Count" },
+    y: { label: null },
+    marks: [
+      Plot.barX(entities, {
+        x: "count",
+        y: "short",
+        fill: scarlet,
+        sort: { y: "-x" },
+        tip: true
+      }),
+      Plot.ruleX([0])
+    ]
+  });
+}
+```

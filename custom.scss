@@ -58,6 +58,36 @@ main ol li {
   margin-bottom: 0.4rem;
 }
 
+/* Tooling dashboard stat cards */
+.stat-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  flex: 1 1 140px;
+  max-width: 200px;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: $primary;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
 /* Reduce gap between cv-entry heading and its description paragraph */
 h3.cv-entry + p {
   margin-bottom: 0.3rem;
