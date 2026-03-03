@@ -3,6 +3,8 @@ project:
   output-dir: _site
   resources:
     - "*.pdf"
+  pre-render:
+    - typst compile cv.typ Frenken_Robert_CV.pdf
 
 website:
   title: "Robert Frenken"
@@ -15,7 +17,7 @@ website:
       - text: Posts
         href: posts.qmd
       - text: CV
-        href: cv.qmd
+        href: Frenken_Robert_CV.pdf
     right:
       - icon: github
         href: https://github.com/RobertFrenken

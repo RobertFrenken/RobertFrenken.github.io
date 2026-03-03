@@ -24,6 +24,6 @@ PhD student in Industrial & Systems Engineering at The Ohio State University, wo
 
 ## Research Interests
 
-- Graph neural networks for cybersecurity in automotive systems
-- Knowledge distillation and model compression for edge deployment
-- Federated learning for privacy-preserving intrusion detection
+-   Graph neural networks for cybersecurity in automotive systems
+-   Knowledge distillation and model compression for edge deployment
+-   Federated learning for privacy-preserving intrusion detection
