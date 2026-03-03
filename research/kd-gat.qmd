@@ -5,7 +5,9 @@ description: "An intrusion detection framework based on Graph Attention Networks
 categories: [intrusion-detection, graph-neural-networks, knowledge-distillation]
 ---
 
-**Venue:** IEEE International Conference on Intelligent Transportation Systems (ITSC) 2025
+**Venue:** IEEE International Conference on Intelligent Transportation Systems (ITSC) 2025 *(to appear)*
+
+**Authors:** R Frenken, SG Bhatti, H Zhang, Q Ahmed
 
 [Paper PDF](../files/IEEE_ITSC_2025-2.pdf)
 

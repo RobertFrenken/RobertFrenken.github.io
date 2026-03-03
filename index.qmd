@@ -24,6 +24,23 @@ PhD student in Industrial & Systems Engineering at The Ohio State University, wo
 
 ## Research Interests
 
--   Graph neural networks for cybersecurity in automotive systems
--   Knowledge distillation and model compression for edge deployment
--   Federated learning for privacy-preserving intrusion detection
+- Graph neural networks for cybersecurity in automotive systems
+- Knowledge distillation and model compression for edge deployment
+- Federated learning for privacy-preserving intrusion detection
+- LLM behavior in game-theoretic scenarios
+
+## Recent Projects
+
+- **[Ohio Campaign Finance Dashboard](https://ohtransparencymaps.com)** — Interactive data visualization platform exploring political contributions across Ohio legislative districts. Built with D3.js, DuckDB-WASM, and Observable Framework.
+
+- **[Mobility Systems Lab Documentation](https://osu-car-msl.github.io/lab-setup-guide/)** — Technical knowledge base for lab onboarding, covering HPC workflows, PyTorch/PyG setup, and SLURM job management.
+
+- **CAIS 2025 Capstone** — Empirical investigation of LLM behavior in game-theoretic scenarios (prisoner's dilemma, battle-of-the-sexes, duopoly markets).
+
+## Technical Skills
+
+**ML/DL:** PyTorch, PyTorch Geometric, Ray, scikit-learn, Weights & Biases
+
+**Data:** DuckDB, Spark, Hadoop, SQL, Pandas
+
+**Infrastructure:** AWS, Azure, SLURM, Git, Linux
