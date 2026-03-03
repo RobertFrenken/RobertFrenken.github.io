@@ -27,6 +27,9 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
+      - name: Install Typst
+        uses: typst-community/setup-typst@v4
+
       - name: Render
         uses: quarto-dev/quarto-actions/render@v2
 
