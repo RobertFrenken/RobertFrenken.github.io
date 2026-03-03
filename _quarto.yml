@@ -27,7 +27,10 @@ website:
     center: |
       Built with [Quarto](https://quarto.org/) · © 2026 Robert Frenken
 
+brand: _brand.yml
+
 format:
   html:
-    theme: litera
-    css: styles.css
+    theme:
+      - litera
+      - custom.scss

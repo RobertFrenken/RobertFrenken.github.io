@@ -1,3 +1,10 @@
+/*-- scss:defaults --*/
+
+/* brand.yml handles fonts + link colors; $primary must stay in SCSS to override Bootswatch */
+$primary: #bb0000;
+
+/*-- scss:rules --*/
+
 /* CV entry layout: title with right-aligned date */
 .cv-entry + p {
   display: flex;
@@ -13,7 +20,7 @@
 
 /* Typography refinements */
 h2 {
-  border-bottom: 2px solid #bb0000;
+  border-bottom: 2px solid var(--bs-primary);
   padding-bottom: 0.3rem;
   margin-top: 1.2rem;
 }
@@ -25,20 +32,12 @@ h3.cv-entry {
 
 /* Navbar scarlet accent */
 .navbar {
-  border-bottom: 3px solid #bb0000;
+  border-bottom: 3px solid var(--bs-primary);
 }
 
 /* Download button */
 .btn-outline-primary {
-  color: #bb0000;
-  border-color: #bb0000;
   margin-bottom: 0.75rem;
-}
-
-.btn-outline-primary:hover {
-  background-color: #bb0000;
-  border-color: #bb0000;
-  color: #fff;
 }
 
 /* Lists in CV */
