@@ -1,0 +1,142 @@
+{
+  "experiment_metadata": {
+    "title": "Graph-View vs Traditional Code Exploration for LLM Agents",
+    "hypothesis": "Graph-based navigation reduces token usage and improves architectural finding quality compared to traditional grep/glob exploration, while traditional exploration better surfaces line-level code issues.",
+    "independent_variable": "exploration_method",
+    "dependent_variables": [
+      "wall_clock_seconds",
+      "total_tokens",
+      "tool_calls",
+      "findings_count",
+      "findings_by_priority",
+      "unique_findings",
+      "overlapping_findings",
+      "bugs_found",
+      "lines_removable",
+      "tokens_per_finding",
+      "architectural_findings",
+      "code_level_findings"
+    ],
+    "controlled_variables": {
+      "model": "claude-opus-4-6",
+      "agent_type": "general-purpose",
+      "run_in_background": true,
+      "codebase_context": "Same commit, same session, same prompt structure"
+    },
+    "limitations": [
+      "Single codebase (KD-GAT) — generalizability unknown",
+      "Agents are not identical prompts — method instructions differ by design",
+      "No repeated trials yet — variance unknown",
+      "Token counts include tool results, not just generation",
+      "Wall-clock time includes queuing and tool execution latency",
+      "Findings quality is subjectively categorized by the researcher",
+      "Graph infrastructure has upfront build cost not captured in trial timing"
+    ],
+    "codebase_properties": {
+      "project": "KD-GAT",
+      "language": "Python",
+      "total_python_files": 48,
+      "total_lines_approx": 12949,
+      "graph_nodes": 89,
+      "graph_edges": 214,
+      "modules": 8,
+      "recent_cleanup": "193K lines deleted in prior 5 commits"
+    }
+  },
+  "trials": [
+    {
+      "trial_id": "trial_001",
+      "date": "2026-03-07",
+      "task": "consolidation_analysis",
+      "task_description": "Find remaining consolidation opportunities in KD-GAT after major 193K-line cleanup",
+      "codebase_commit": "5cb4faf",
+      "graph_view": {
+        "agent_id": "a673429b0e5b4793b",
+        "wall_clock_seconds": 218,
+        "total_tokens": 76951,
+        "tool_calls": 51,
+        "findings_count": 9,
+        "findings_by_priority": {
+          "critical": 0,
+          "high": 6,
+          "medium": 2,
+          "low": 1
+        },
+        "bugs_found": 0,
+        "lines_removable": 400,
+        "tokens_per_finding": 8550,
+        "unique_findings": 6,
+        "overlapping_findings": 2,
+        "architectural_findings": 3,
+        "code_level_findings": 6,
+        "finding_categories": {
+          "orphaned_scripts": 4,
+          "god_module_extraction": 2,
+          "dead_files": 1,
+          "api_clarity": 1,
+          "subsumed_scripts": 1
+        },
+        "graph_signals_used": [
+          "zero_fan_in_fan_out",
+          "fan_out_threshold",
+          "health_score",
+          "smell_detection",
+          "module_size"
+        ],
+        "first_tool": "read_manifest",
+        "exploration_pattern": "manifest -> module_summaries -> codebase_graph -> health_smells -> targeted_reads"
+      },
+      "traditional": {
+        "agent_id": "af99eaab80d87d031",
+        "wall_clock_seconds": 219,
+        "total_tokens": 142602,
+        "tool_calls": 80,
+        "findings_count": 11,
+        "findings_by_priority": {
+          "critical": 1,
+          "high": 4,
+          "medium": 4,
+          "low": 2
+        },
+        "bugs_found": 1,
+        "lines_removable": 335,
+        "tokens_per_finding": 12964,
+        "unique_findings": 9,
+        "overlapping_findings": 2,
+        "architectural_findings": 1,
+        "code_level_findings": 10,
+        "finding_categories": {
+          "missing_import_bug": 1,
+          "dead_migration_code": 1,
+          "duplicate_functions": 3,
+          "unused_exports": 2,
+          "stale_scripts": 1,
+          "hardcoded_paths": 1,
+          "style_issues": 1,
+          "reexport_shim": 1
+        },
+        "search_strategies_used": [
+          "directory_listing",
+          "glob_all_python",
+          "grep_imports",
+          "grep_function_signatures",
+          "grep_todo_fixme",
+          "line_count_analysis",
+          "cross_file_pattern_matching"
+        ],
+        "first_tool": "bash_ls",
+        "exploration_pattern": "directory_tree -> glob_files -> grep_patterns -> read_suspects -> cross_reference"
+      },
+      "comparison": {
+        "token_ratio": 0.54,
+        "token_savings_pct": 46.0,
+        "tool_call_ratio": 0.64,
+        "wall_clock_ratio": 1.0,
+        "findings_ratio": 0.82,
+        "combined_unique_findings": 15,
+        "complementary_score": 0.87,
+        "notes": "Graph-view used 46% fewer tokens for comparable wall-clock time. Traditional found 1 critical bug that graph-view missed. Graph-view found architectural extraction opportunities (CKA, dry_run_tune) that traditional missed. Methods are highly complementary — only 2 of 15 combined findings overlapped."
+      }
+    }
+  ]
+}
