@@ -1,0 +1,650 @@
+{
+  "archetypes": [
+    {
+      "name": "The Vibe Coder",
+      "description": "Individual developers using casual AI prompting to rapidly prototype and build applications. They describe what they want in natural language and accept AI output with minimal review, optimizing for speed over code quality. Term coined by Andrej Karpathy in February 2025.",
+      "typical_domain": "prototypes, demos, hackathons, personal projects",
+      "workflow_style": "ad-hoc, autonomous, minimal planning",
+      "session_intensity": "medium",
+      "tooling_depth": "minimal",
+      "key_patterns": [
+        "Natural language descriptions instead of code",
+        "Accept AI output with minimal review",
+        "Ship fast, debug later",
+        "Single-prompt interactions"
+      ],
+      "friction_points": [
+        "AI slop: code that looks reasonable but lacks error handling, security, maintainability",
+        "95% feel productive while measurably producing lower-quality code",
+        "41% higher code churn",
+        "63% have spent more time debugging AI code than writing it themselves"
+      ],
+      "examples": [
+        "Andrej Karpathy (coined term)",
+        "Scientific American coverage of non-technical users building with Claude Code"
+      ]
+    },
+    {
+      "name": "The Plan-Driven Architect",
+      "description": "Experienced engineers who enforce a strict research-plan-implement methodology. They never let Claude write code until a written plan has been reviewed and approved, use annotation cycles to inject domain constraints, and treat Claude as a capable junior that needs architectural direction.",
+      "typical_domain": "full-stack web development, platform engineering, large codebases",
+      "workflow_style": "plan-driven, interactive with structured phases",
+      "session_intensity": "high",
+      "tooling_depth": "moderate",
+      "key_patterns": [
+        "Research phase with persistent research.md artifacts",
+        "Plan.md with approach, code snippets, file paths, trade-offs",
+        "Annotation cycles (1-6 iterations before implementation)",
+        "Reference-based corrections pointing to existing code patterns",
+        "Cherry-picking proposals item-by-item",
+        "Plan mode (Shift+Tab) before auto-accept"
+      ],
+      "friction_points": [
+        "Context window filling up degrades performance",
+        "Claude doesn't know product priorities without annotation",
+        "Auto-compaction is opaque and error-prone"
+      ],
+      "examples": [
+        "Boris Tane (Engineering Lead, Cloudflare, founder of Baselime)",
+        "Boris Cherny (Creator of Claude Code at Anthropic)"
+      ]
+    },
+    {
+      "name": "The Parallel Orchestrator",
+      "description": "Power users who run 5-15 Claude Code instances simultaneously, leveraging git worktrees for isolation and treating sessions like a distributed team of junior developers. They optimize for throughput by eliminating idle time and use system notifications to context-switch between sessions.",
+      "typical_domain": "platform engineering, multi-feature development, team leads",
+      "workflow_style": "autonomous with supervisory oversight, massively parallel",
+      "session_intensity": "extreme",
+      "tooling_depth": "heavy",
+      "key_patterns": [
+        "5+ local terminal sessions running simultaneously",
+        "5-10 remote web sessions in parallel",
+        "Git worktrees for branch isolation",
+        "System notifications for input-needed alerts",
+        "10-20% session abandonment rate",
+        "Opus with thinking for all tasks (quality over speed)",
+        "Leaderboards tracking team Claude Code usage"
+      ],
+      "friction_points": [
+        "Token costs scale linearly with teammate count",
+        "Split panes require tmux/iTerm2 (incompatible with VS Code)",
+        "No session resumption for in-process teammates",
+        "Rate limits hit faster with parallel usage"
+      ],
+      "examples": [
+        "Boris Cherny (5 local + 5-10 web sessions)",
+        "Patrick Mineault (5-10 Claude Code windows in parallel)",
+        "incident.io team (4-5 Claude agents simultaneously)"
+      ]
+    },
+    {
+      "name": "The Infrastructure Builder",
+      "description": "Users who treat Claude Code as an operating system rather than a coding assistant. They build extensive skill libraries, hook systems, MCP server integrations, and persistent workspaces that create an autonomous development environment running 24/7 with scheduled tasks and cross-tool integration.",
+      "typical_domain": "devops, platform engineering, autonomous workflows, content automation",
+      "workflow_style": "autonomous, infrastructure-as-code for AI",
+      "session_intensity": "extreme",
+      "tooling_depth": "infrastructure",
+      "key_patterns": [
+        "12+ custom skills as markdown files",
+        "Pre/post hooks for safety and automation",
+        "8+ MCP server integrations (Postgres, GitHub, Figma, Slack, etc.)",
+        "Scheduled agent runs (cron-style)",
+        "Persistent workspace across sessions",
+        "Sub-agents for parallel execution",
+        "Voice note to agent processing pipelines"
+      ],
+      "friction_points": [
+        "MCP server uptime management",
+        "Local container management complexity",
+        "Cross-device sync challenges"
+      ],
+      "examples": [
+        "Jan Luca Sandmann (computer-agents.com, 12 skills, 8 MCP servers)",
+        "Daniil Okhlopkov (Head of Analytics, TON Foundation, Coolify+Telegram+Codex MCPs)"
+      ]
+    },
+    {
+      "name": "The Enterprise Team Lead",
+      "description": "Engineering leads who manage shared CLAUDE.md files across teams, enforce quality gates via hooks and CI, and use Claude Code's analytics dashboard to track adoption and productivity. They focus on governance, reproducibility, and compounding institutional knowledge.",
+      "typical_domain": "enterprise SaaS, large engineering teams, platform companies",
+      "workflow_style": "plan-driven with team governance, supervised autonomy",
+      "session_intensity": "high",
+      "tooling_depth": "heavy",
+      "key_patterns": [
+        "Shared CLAUDE.md checked into git, updated multiple times weekly",
+        "AGENTS.md maintained in sync for cross-IDE compatibility",
+        "Pre-commit hooks blocking credential file commits",
+        "Block-at-submit hooks forcing test-and-fix loops",
+        "PR review prompts customized for bugs/vulnerabilities over style",
+        "Analytics dashboards tracking lines accepted, PRs shipped, sessions",
+        "Permission allowlists via /permissions instead of --dangerously-skip-permissions"
+      ],
+      "friction_points": [
+        "30%+ of engineering team must use a tool before it goes in CLAUDE.md",
+        "Token budget management across teams",
+        "Balancing CLAUDE.md size (under 300 lines) with completeness",
+        "LLM instruction-following degrades uniformly as instruction count increases"
+      ],
+      "examples": [
+        "Shrivu Shankar (Abnormal AI, 13KB CLAUDE.md for monorepo)",
+        "Steve Sewell (Builder.io, 18K-line React components)",
+        "Anthropic internal teams (132 engineers surveyed, 200K transcripts analyzed)"
+      ]
+    },
+    {
+      "name": "The Research Scientist",
+      "description": "Academic researchers who use Claude Code for the scientific loop: data acquisition, processing, analysis, and visualization. They emphasize verification through plots and tests, advocate against pure autonomy in favor of collaborative steering, and structure projects with clear data lineage.",
+      "typical_domain": "ML research, computational science, academic labs",
+      "workflow_style": "interactive, plan-execute-evaluate, collaborative steering",
+      "session_intensity": "medium",
+      "tooling_depth": "moderate",
+      "key_patterns": [
+        "Structured folder organization (data/raw, data/processed, data/generated)",
+        "Heavy use of Esc to interrupt and redirect Claude",
+        "Shift+Tab for plan iteration before execution",
+        "Test-driven development for verification",
+        "Generate lots of plots for cheap validation",
+        "Snakemake/Airflow for computational DAGs",
+        "Voice input (Wispr, SuperWhisper) for context-dumping",
+        "marimo/jupytext/quarto for notebook alternatives"
+      ],
+      "friction_points": [
+        "Tools can produce wrong results faster than ever",
+        "Junior researchers lack metacognition to identify errors",
+        "Requires prior coding experience for effective use",
+        "Frontier research may need narrow focus incompatible with parallel sessions"
+      ],
+      "examples": [
+        "Patrick Mineault (NeuroAI researcher, ex-Google/Meta/Mila)",
+        "Pedro Sant'Anna (Emory University, 6 PhD lecture decks with 800+ slides via Claude Code)",
+        "2.1% of scientists with ORCID-linked GitHub profiles use Claude Code (Feb 2026)"
+      ]
+    },
+    {
+      "name": "The DevOps Automator",
+      "description": "Infrastructure engineers who use Claude Code for IaC generation, Kubernetes troubleshooting, cost optimization, and CI/CD pipeline automation. They leverage headless mode for non-interactive automation and specialized skills for Terraform, Pulumi, and cloud platforms.",
+      "typical_domain": "devops, SRE, cloud infrastructure, server management",
+      "workflow_style": "autonomous via headless mode, CI/CD integrated",
+      "session_intensity": "medium",
+      "tooling_depth": "heavy",
+      "key_patterns": [
+        "Headless mode (claude -p) in CI/CD pipelines",
+        "Specialized IaC skills (Terraform, Pulumi, CloudFormation)",
+        "60%+ of adopting teams use non-interactive mode",
+        "Sandboxed execution for safe deployments",
+        "Changelog generation, code migration, accessibility audits",
+        "Technical debt detection automation"
+      ],
+      "friction_points": [
+        "Safety concerns with autonomous infrastructure changes",
+        "Permission management in headless mode",
+        "Requires --dangerously-skip-permissions for MCP server mode"
+      ],
+      "examples": [
+        "Pulumi (maintains skills repository for IaC patterns)",
+        "Fluid (open-source tool positioned as Claude Code for Infrastructure)",
+        "45% code review time reduction reported on 50K+ line projects"
+      ]
+    },
+    {
+      "name": "The Knowledge Architect",
+      "description": "Users who build multi-layered knowledge systems around Claude Code with persistent memory graphs, codebase graph databases, hierarchical navigation manifests, and cross-project propagation rules. They treat the development environment as a queryable knowledge base that compounds over time.",
+      "typical_domain": "ML research, multi-project management, academic/industry hybrid",
+      "workflow_style": "plan-driven, infrastructure-heavy, multi-project orchestration",
+      "session_intensity": "extreme",
+      "tooling_depth": "infrastructure",
+      "key_patterns": [
+        "3-layer knowledge architecture (code structure, data flow, learnings)",
+        "6+ MCP servers for different knowledge domains",
+        "15+ custom skills for workflow automation",
+        "7+ hooks for safety, formatting, context awareness",
+        "Ownership registry for topic-to-file mapping",
+        "Cross-repo propagation trigger matrices",
+        "Hierarchical manifest-based navigation",
+        "Graph databases for code intelligence (KuzuDB, GitNexus)"
+      ],
+      "friction_points": [
+        "High initial setup investment",
+        "Maintaining consistency across 6+ projects",
+        "Context window pressure from large instruction sets",
+        "17% friction rate (buggy code + wrong approach incidents)"
+      ],
+      "examples": [
+        "Robert Frenken (author's own setup: 6 projects, 3 knowledge layers, 171 sessions in 16 days)"
+      ]
+    }
+  ],
+  "dimensions": [
+    {
+      "name": "Session Intensity",
+      "description": "How many sessions per day and hours per day a user spends in Claude Code",
+      "scale": "low (1-2 sessions/day, <1hr) to extreme (10+ sessions/day, 8+ hours)",
+      "data_points": [
+        "Average cost $6/dev/day, 90th percentile under $12/day",
+        "Pro users: 10-40 prompts per 5-hour window",
+        "Max 20x users: 200-800 prompts per window",
+        "Boris Cherny: 5 local + 5-10 web sessions simultaneously",
+        "Robert Frenken: 10.7 sessions/day over 16 days, 179 total hours",
+        "Usage resets every ~5 hours",
+        "50 sessions/month triggers throttling (1.67/day average)"
+      ]
+    },
+    {
+      "name": "Tooling Depth",
+      "description": "How much infrastructure a user builds around Claude Code (CLAUDE.md, hooks, skills, MCP servers, custom scripts)",
+      "scale": "minimal (default config) to infrastructure (custom knowledge graphs, multi-layer systems, 10+ integrations)",
+      "data_points": [
+        "Boris Cherny's team CLAUDE.md: 2.5k tokens",
+        "Shrivu Shankar's monorepo CLAUDE.md: 13KB with potential for 25KB",
+        "Fresh monorepo session costs ~20k tokens baseline (10% of 200k window)",
+        "Jan Luca Sandmann: 12 skills, 8 MCP servers",
+        "Daniil Okhlopkov: 3 MCP servers, 3 custom skills (~200 lines each)",
+        "Robert Frenken: 7 hooks, 15 skills, 6 MCP servers, 3 knowledge layers",
+        "LLMs can follow ~150-200 instructions reliably; Claude system prompt already uses ~50"
+      ]
+    },
+    {
+      "name": "Autonomy Level",
+      "description": "How much human supervision vs autonomous agent execution characterizes the workflow",
+      "scale": "fully interactive (every edit reviewed) to fully autonomous (headless CI/CD, scheduled agents)",
+      "data_points": [
+        "Over 50% of respondents report only 0-20% of work can be fully delegated (Anthropic internal)",
+        "60%+ of teams use non-interactive mode for automation",
+        "Claude Code max consecutive actions increased from ~10 to ~21 (116% increase over 6 months)",
+        "Human intervention turns decreased 33% (from 6.2 to 4.1 per transcript)",
+        "83.8% of agent-assisted PRs accepted; 54.9% merged without modification",
+        "Code can only be relied upon ~30% of the time on first try (community report)"
+      ]
+    },
+    {
+      "name": "Planning Rigor",
+      "description": "How structured and deliberate the user's approach is before letting Claude generate code",
+      "scale": "ad-hoc (describe and accept) to spec-driven (research.md, plan.md, annotation cycles, quality gates)",
+      "data_points": [
+        "Boris Tane: 1-6 annotation cycles before implementation",
+        "90% of sessions recommended to start in plan mode",
+        "Spec-driven development emerged as counter to vibe coding failures",
+        "PEV Loop (Plan-Execute-Verify) identified as core agentic methodology",
+        "Shrivu Shankar: 'Don't trust auto-compaction. Use /clear for simple reboots.'"
+      ]
+    },
+    {
+      "name": "Parallelism",
+      "description": "How many concurrent Claude Code sessions or agents a user manages simultaneously",
+      "scale": "single session to 15+ parallel instances with agent teams",
+      "data_points": [
+        "Boris Cherny: 5 local + 5-10 web = up to 15 simultaneous",
+        "Patrick Mineault: 5-10 parallel windows",
+        "incident.io team: 4-5 simultaneous agents",
+        "Agent teams: experimental feature with shared task list, inbox messaging, file ownership boundaries",
+        "9 parallel subagents for code review (HAMY blog)",
+        "10-20% session abandonment rate for parallel work"
+      ]
+    },
+    {
+      "name": "Verification Discipline",
+      "description": "How rigorously users verify Claude's output before accepting it",
+      "scale": "trust-and-ship to multi-gate verification (tests, screenshots, CI, adversarial review)",
+      "data_points": [
+        "Boris Cherny: verification feedback loops improve results 2-3x",
+        "Shrivu Shankar: block-at-submit hooks force test-and-fix loop until green",
+        "Patrick Mineault: lots of plots for cheap validation",
+        "45% say debugging AI code takes longer than writing manually",
+        "66% cite 'almost correct but not quite' as biggest frustration",
+        "AI-generated code has ~1.7x more defects, up to 2.7x more security vulnerabilities"
+      ]
+    }
+  ],
+  "benchmarks": {
+    "sessions_per_day": {
+      "low": 1.67,
+      "median": null,
+      "high": 5,
+      "power_user": 10.7,
+      "notes": "Low based on 50 sessions/month throttle threshold. High based on Boris Cherny's parallel local sessions. Power user is Robert Frenken's measured rate over 16 days. No industry-wide median published."
+    },
+    "commits_per_session": {
+      "low": null,
+      "median": null,
+      "high": null,
+      "notes": "No public per-session commit data found. Claude Code produces 135,000+ commits/day on GitHub (4% of all public commits as of Feb 2026). Robert Frenken: 0.6 commits/session over 16 days."
+    },
+    "tooling_layers": {
+      "description": "Typical users rely on default CLAUDE.md and built-in features. Power users add 2-5 custom slash commands, 1-3 hooks, and 1-2 MCP servers. Infrastructure builders create 10+ skills, 5+ hooks, 5+ MCP servers, and custom knowledge graph databases.",
+      "typical_user": "Default config, <60 line CLAUDE.md, 0-2 slash commands",
+      "power_user": "2-5 slash commands, 1-3 hooks, 1-3 MCP servers, CLAUDE.md <300 lines",
+      "infrastructure_builder": "10+ skills, 5+ hooks, 5+ MCP servers, knowledge graphs, custom scripts, 3+ knowledge layers"
+    },
+    "adoption_rates": [
+      "92.6% of developers use an AI coding assistant at least monthly (DX Insight, 51K+ devs)",
+      "85% use AI regularly (JetBrains 2025, 24,534 devs across 194 countries)",
+      "84% use or plan to use AI tools (Stack Overflow, 49K+ responses)",
+      "51% of professional developers use AI tools daily",
+      "59% use 3+ AI coding tools weekly",
+      "91% of engineering organizations have adopted at least one AI coding tool",
+      "90% of Fortune 100 companies use GitHub Copilot",
+      "23% of developers regularly use AI agents (Stack Overflow 2025)",
+      "38% have no plans to adopt agents",
+      "2.1% of scientists with ORCID-linked GitHub profiles use Claude Code (Feb 2026, projected ~10% by end 2026)",
+      "GitHub Copilot: 20M+ users, 4.7M paid subscribers (2026, +75% YoY)",
+      "Cursor: $2B ARR (Feb 2026), 60% enterprise revenue",
+      "Anthropic Claude Code: $2.5B run-rate (Feb 2026)"
+    ],
+    "productivity_claims": [
+      {
+        "claim": "19% SLOWER with AI tools (controlled RCT)",
+        "source": "METR study (16 experienced devs, 246 tasks, avg 2hr each)",
+        "note": "Developers predicted 24% speedup, believed 20% speedup post-study"
+      },
+      {
+        "claim": "56% faster task completion with Copilot",
+        "source": "GitHub/Microsoft (Peng et al., 95 developers)"
+      },
+      {
+        "claim": "26% increase in completed tasks",
+        "source": "Microsoft/Accenture/Fortune 100 (4,867 developers)"
+      },
+      {
+        "claim": "55% faster task completion",
+        "source": "GitHub internal (4,800 developers)"
+      },
+      {
+        "claim": "+50% self-reported productivity boost (up from +20% one year prior)",
+        "source": "Anthropic internal (132 engineers, 200K transcripts, Aug 2025)"
+      },
+      {
+        "claim": "67% increase in merged PRs per engineer daily",
+        "source": "Anthropic internal"
+      },
+      {
+        "claim": "+21% tasks, +98% PRs merged, +154% PR size, +91% review time, +9% bugs, ZERO org-level gains",
+        "source": "Faros AI Paradox Report (10,000+ devs, 1,255 teams)"
+      },
+      {
+        "claim": "~3.6 hours/week saved on average (daily users: ~4.1 hrs)",
+        "source": "Aggregate survey data (multiple surveys)"
+      },
+      {
+        "claim": "200% productivity increase per engineer",
+        "source": "Anthropic internal (Boris Cherny claim)"
+      },
+      {
+        "claim": "Features shipped in 30-60 minutes instead of 8-10 hours",
+        "source": "Full-stack developer using Wasp framework + Claude Code"
+      },
+      {
+        "claim": "Complex blockchain research reduced from full work week to one evening",
+        "source": "Daniil Okhlopkov (TON Foundation)"
+      },
+      {
+        "claim": "30% faster engineering, 500,000+ hours saved",
+        "source": "TELUS (13,000+ AI solutions)"
+      },
+      {
+        "claim": "1,000+ merged PRs weekly from agents",
+        "source": "Stripe ('Minions' agents)"
+      }
+    ],
+    "code_quality": [
+      "Only ~30% of AI-suggested code gets accepted (Copilot acceptance rate)",
+      "83.8% of Claude Code agent-assisted PRs accepted/merged (567 PRs, 157 repos)",
+      "54.9% merged without modification; 45.1% needed human revision",
+      "AI-generated code: ~1.7x more defects overall",
+      "Up to 2.7x more security vulnerabilities in AI-generated code",
+      "48% of AI-generated code contains security vulnerabilities",
+      "Only 33% fully trust AI-generated code; 3% highly trust",
+      "46% actively distrust AI results (Stack Overflow)",
+      "Code reliable ~30% of first try (community report)"
+    ],
+    "token_usage": {
+      "typical_session": "10,000-50,000 tokens for simple tasks; 50K-200K for medium sessions",
+      "cache_ratio": "90%+ of all tokens are cache reads; input/output under 1% combined; cache writes ~6%",
+      "cost_per_day": "$6 average, $12 for 90th percentile",
+      "claude_code_efficiency": "5.5x fewer tokens than Cursor for identical tasks"
+    },
+    "github_impact": {
+      "claude_code_commits_daily": 135000,
+      "share_of_public_commits": "4% (Feb 2026)",
+      "projected_share_end_2026": "20%+",
+      "doubling_rate": "2x in one month",
+      "copilot_code_generation_share": "46% of code on average (Java: 61% highest)",
+      "ai_tools_code_share_2026": "41% of all code written by AI tools"
+    }
+  },
+  "anthropic_internal_data": {
+    "source": "Anthropic internal research (132 engineers, 53 interviews, 200K transcripts, Aug 2025)",
+    "claude_usage_in_daily_work": "59% (up from 28% one year prior)",
+    "self_reported_productivity_boost": "+50% average (up from +20%)",
+    "power_user_gains": "14% report >100% productivity gains",
+    "merged_pr_increase": "67% per engineer daily",
+    "new_work_enabled": "27% of Claude-assisted tasks represent entirely new work",
+    "undesirable_tasks_offloaded": "44% of Claude-assisted work are tasks employees wouldn't prefer doing manually",
+    "daily_usage_by_task": {
+      "debugging": "55%",
+      "code_understanding": "42%",
+      "implementing_features": "37%",
+      "design_planning": "lowest adoption"
+    },
+    "delegation_capacity": "Over 50% report only 0-20% of work can be fully delegated",
+    "autonomy_trends_6_month": {
+      "max_consecutive_actions": "~10 to ~21 (116% increase)",
+      "avg_task_complexity": "3.2 to 3.8 on 5-point scale",
+      "human_intervention_turns": "6.2 to 4.1 (33% decrease)",
+      "feature_implementation_share": "14% to 37%",
+      "code_design_planning_share": "1% to 10%"
+    },
+    "colleague_replacement": "Some report 80-90% of questions now go to Claude rather than colleagues"
+  },
+  "named_power_users": [
+    {
+      "name": "Boris Cherny",
+      "role": "Creator/Head of Claude Code at Anthropic",
+      "key_practices": [
+        "5 local + 5-10 web sessions simultaneously",
+        "Exclusively uses Opus with thinking",
+        "100% of code written by AI since Nov 2025",
+        "Plan mode before auto-accept",
+        "Team CLAUDE.md at 2.5k tokens, updated multiple times weekly",
+        "/commit-push-pr run dozens of times daily",
+        "PostToolUse hook for formatting",
+        "MCP: Slack, BigQuery, Sentry",
+        "Pre-allows safe bash commands via /permissions"
+      ]
+    },
+    {
+      "name": "Boris Tane",
+      "role": "Engineering Lead, Cloudflare (founder of Baselime)",
+      "key_practices": [
+        "Research-plan-implement methodology",
+        "Persistent research.md and plan.md artifacts",
+        "1-6 annotation cycles before implementation",
+        "Cherry-picking proposals item-by-item",
+        "No unnecessary comments or JSDoc",
+        "Continuous typecheck execution",
+        "Single long sessions with context window compaction"
+      ]
+    },
+    {
+      "name": "Shrivu Shankar",
+      "role": "Software Engineer, Abnormal AI",
+      "key_practices": [
+        "13KB CLAUDE.md for monorepo (potential 25KB)",
+        "Only documents tools used by 30%+ of engineers",
+        "AGENTS.md sync for cross-IDE compatibility",
+        "Avoids /compact; uses /clear + /catchup",
+        "Block-at-submit hooks (not block-at-write)",
+        "Minimal slash commands (just /catchup and /pr)",
+        "Migrated most MCPs to simple CLIs",
+        "Skills > MCP philosophy"
+      ]
+    },
+    {
+      "name": "Steve Sewell",
+      "role": "Founder, Builder.io",
+      "key_practices": [
+        "Claude Code as primary interface (not secondary)",
+        "VS Code extension for parallel instances",
+        "Manages 18,000-line React components successfully",
+        "--dangerously-skip-permissions for speed",
+        "/clear frequently to preserve tokens",
+        "Customized PR review prompt for bugs over style"
+      ]
+    },
+    {
+      "name": "Daniil Okhlopkov",
+      "role": "Head of Analytics, TON Foundation",
+      "key_practices": [
+        "MCP: Coolify (deployment), Telegram (messaging), Codex (dual-model validation)",
+        "Skills: ton-analyst (~200 lines), ton-profiler, crosspost",
+        "CLAUDE.md as agent operating system",
+        "Voice notes to agent processing pipeline",
+        "90% Claude Code, 10% Cursor",
+        "$100/month Claude Max",
+        "30-page reports with 15+ charts automated"
+      ]
+    },
+    {
+      "name": "Patrick Mineault",
+      "role": "NeuroAI researcher (ex-Google, Meta, Mila)",
+      "key_practices": [
+        "5-10 parallel Claude Code windows",
+        "Esc with abandon for mid-conversation steering",
+        "Plan-execute-evaluate cycle",
+        "ruff + uv + mamba stack",
+        "marimo for notebooks, Snakemake for DAGs",
+        "Wispr for voice input",
+        "Structured data lineage (raw/processed/generated)"
+      ]
+    },
+    {
+      "name": "Jan Luca Sandmann",
+      "role": "Founder, computer-agents.com",
+      "key_practices": [
+        "12 custom skills",
+        "8 MCP servers (Postgres, GitHub, Figma, Slack, etc.)",
+        "Hooks for notifications (iMessage on completion)",
+        "Scheduled agent runs (cron-style)",
+        "Permanent worker agents (Research Bot, Code Reviewer, Personal Assistant)",
+        "3 side projects built/deployed hands-off in 30 days",
+        "~18 hours/week saved"
+      ]
+    },
+    {
+      "name": "Addy Osmani",
+      "role": "Software Engineer, Google (Cloud & Gemini)",
+      "key_practices": [
+        "Agent teams for competing debugging hypotheses",
+        "Parallel code review (security, performance, coverage separately)",
+        "Cross-layer feature work (frontend, backend, testing agents)",
+        "File ownership boundaries to prevent merge conflicts",
+        "Delegate mode restricting leads to coordination-only"
+      ]
+    }
+  ],
+  "key_paradoxes": [
+    {
+      "name": "Perception vs Reality Gap",
+      "description": "Developers believe they are 20% faster; METR controlled measurement shows 19% slower",
+      "source": "METR RCT (16 devs, 246 tasks)"
+    },
+    {
+      "name": "Individual vs Organizational Gap",
+      "description": "Individual devs produce +21% more tasks and +98% more PRs, but zero measurable organization-level improvement. Downstream bottlenecks absorb gains (Amdahl's Law).",
+      "source": "Faros AI Paradox Report (10,000+ devs, 1,255 teams)"
+    },
+    {
+      "name": "Speed vs Quality Gap",
+      "description": "74% report productivity gains and 95% feel productive, but code has 1.7x more defects and 41% higher churn",
+      "source": "Multiple surveys aggregated by Panto AI"
+    },
+    {
+      "name": "Adoption vs Trust Gap",
+      "description": "85-93% adopt AI tools, but only 33% trust the output. 46% actively distrust.",
+      "source": "Stack Overflow 2025, JetBrains 2025, DX Insight"
+    }
+  ],
+  "robert_profile": {
+    "sessions_16_days": 171,
+    "sessions_per_day": 10.7,
+    "total_hours": 179,
+    "avg_session_min": 63,
+    "commits": 103,
+    "commits_per_session": 0.6,
+    "bash_calls": 2656,
+    "task_creates": 244,
+    "read_grep_glob": 4876,
+    "custom_hooks": 7,
+    "custom_skills": 15,
+    "mcp_servers": 6,
+    "knowledge_layers": 3,
+    "projects_managed": 6,
+    "friction_rate_pct": 17,
+    "buggy_code_incidents": 15,
+    "wrong_approach_incidents": 14,
+    "archetype_mapping": "Knowledge Architect with Parallel Orchestrator tendencies",
+    "distinguishing_features": [
+      "3-layer knowledge architecture (GitNexus code graph + SQLite data flow + memory MCP) is unique among documented users",
+      "HPC/SLURM integration is rare in Claude Code community (most users are web/SaaS)",
+      "6 projects managed simultaneously with cross-repo propagation triggers",
+      "Ownership registry enforcing single-source-of-truth across 20+ rules files",
+      "Hierarchical manifest-based navigation with health scoring and smell detection",
+      "10.7 sessions/day exceeds even Boris Cherny's documented parallel usage"
+    ]
+  },
+  "sources": [
+    "https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic",
+    "https://like2byte.com/claude-code-rate-limits-unlimited-ai-collapse/",
+    "https://boristane.com/blog/how-i-use-claude-code/",
+    "https://okhlopkov.com/claude-code-setup-mcp-hooks-skills-2026/",
+    "https://www.builder.io/blog/claude-code",
+    "https://getpushtoprod.substack.com/p/how-the-creator-of-claude-code-actually",
+    "https://blog.sshh.io/p/how-i-use-every-claude-code-feature",
+    "https://github.com/hesreallyhim/awesome-claude-code",
+    "https://dev.to/jan_lucasandmann_bb9257c/claude-code-to-ai-os-blueprint-skills-hooks-agents-mcp-setup-in-2026-46gg",
+    "https://www.humanlayer.dev/blog/writing-a-good-claude-md",
+    "https://github.com/ykdojo/claude-code-tips",
+    "https://code.claude.com/docs/en/best-practices",
+    "https://code.claude.com/docs/en/common-workflows",
+    "https://code.claude.com/docs/en/sub-agents",
+    "https://code.claude.com/docs/en/agent-teams",
+    "https://code.claude.com/docs/en/skills",
+    "https://code.claude.com/docs/en/costs",
+    "https://code.claude.com/docs/en/analytics",
+    "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+    "https://www.faros.ai/blog/ai-software-engineering",
+    "https://newsletter.semianalysis.com/p/claude-code-is-the-inflection-point",
+    "https://www.getpanto.ai/blog/ai-coding-assistant-statistics",
+    "https://survey.stackoverflow.co/2025/ai",
+    "https://devecosystem-2025.jetbrains.com/artificial-intelligence",
+    "https://arxiv.org/abs/2509.14745",
+    "https://arxiv.org/html/2511.04824v1",
+    "https://arxiv.org/abs/2602.10975",
+    "https://arxiv.org/pdf/2507.15003",
+    "https://techcrunch.com/2026/03/02/cursor-has-reportedly-surpassed-2b-in-annualized-revenue/",
+    "https://www.getpanto.ai/blog/github-copilot-statistics",
+    "https://www.getpanto.ai/blog/vibe-coding-statistics",
+    "https://www.businessofapps.com/data/claude-statistics/",
+    "https://www.demandsage.com/claude-ai-statistics/",
+    "https://www.index.dev/blog/ai-pair-programming-statistics",
+    "https://www.index.dev/blog/developer-productivity-statistics-with-ai-tools",
+    "https://epoch.ai/benchmarks/swe-bench-verified",
+    "https://www.uncoveralpha.com/p/anthropics-claude-code-is-having",
+    "https://www.neuroai.science/p/claude-code-for-scientists",
+    "https://addyosmani.com/blog/claude-code-agent-teams/",
+    "https://www.nxcode.io/resources/news/agentic-engineering-complete-guide-vibe-coding-ai-agents-2026",
+    "https://wasp.sh/blog/2026/01/29/claude-code-fullstack-development-essentials",
+    "https://incident.io/blog/shipping-faster-with-claude-code-and-git-worktrees",
+    "https://www.pulumi.com/blog/top-8-claude-skills-devops-2026/",
+    "https://www.infoworld.com/article/3853805/vibe-coding-with-claude-code.html",
+    "https://www.bloomberg.com/news/articles/2026-02-26/ai-coding-agents-like-claude-code-are-fueling-a-productivity-panic-in-tech",
+    "https://fortune.com/2026/01/24/anthropic-boris-cherny-claude-code-non-coders-software-engineers/",
+    "https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens",
+    "https://venturebeat.com/orchestration/claude-codes-tasks-update-lets-agents-work-longer-and-coordinate-across",
+    "https://venturebeat.com/technology/the-creator-of-claude-code-just-revealed-his-workflow-and-developers-are",
+    "https://newsletter.pragmaticengineer.com/p/building-claude-code-with-boris-cherny",
+    "https://www.faros.ai/blog/claude-code-token-limits",
+    "https://resources.anthropic.com/hubfs/2026%20Agentic%20Coding%20Trends%20Report.pdf",
+    "https://medium.com/@joe.njenga/i-tested-claude-code-insights-it-roasted-my-coding-habits-e38c642e1642",
+    "https://claude.com/blog/how-anthropic-teams-use-claude-code"
+  ]
+}

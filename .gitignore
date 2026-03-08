@@ -1,2 +1,5 @@
 /_site/
 /.quarto/
+posts/claude-code-power-users/data/surveys/
+posts/claude-code-power-users/data/clustering_*.log
+posts/claude-code-power-users/data/render_*.log

@@ -1,0 +1,307 @@
+{
+  "archetypes": [
+    {
+      "id": "vibe_coder",
+      "name": "The Vibe Coder",
+      "description": "Generates code without deep understanding of the output. Accepts suggestions wholesale, rarely reviews diffs. Often non-engineers or developers working outside their expertise. The term was coined by Andrej Karpathy to describe coding where you 'fully give in to the vibes.'",
+      "typical_domain": "Prototyping, personal projects, non-engineers building tools",
+      "workflow_style": "Ad-hoc prompting, accept-all mode",
+      "key_patterns": [
+        "No CLAUDE.md or project instructions",
+        "Minimal code review of AI output",
+        "Single-shot prompts, little iteration",
+        "No verification or testing loops"
+      ],
+      "friction_points": [
+        "95% feel productive while producing lower-quality code",
+        "41% higher code churn than manual coding",
+        "48% of generated code contains security vulnerabilities"
+      ],
+      "scores": {
+        "session_intensity": 1,
+        "tooling_depth": 1,
+        "autonomy_level": 4,
+        "planning_rigor": 1,
+        "verification_discipline": 1,
+        "multi_project_scope": 1
+      }
+    },
+    {
+      "id": "autocomplete_upgrader",
+      "name": "The Autocomplete Upgrader",
+      "description": "Traditional developer using AI as enhanced autocomplete. Accepts or rejects inline suggestions, uses tab-completion workflows (Copilot, Cursor tab). AI assists at the line/function level, not the task level. The most common usage pattern across the industry.",
+      "typical_domain": "Enterprise development, full-stack web, any language",
+      "workflow_style": "Inline suggestions, accept/reject cycle",
+      "key_patterns": [
+        "IDE-integrated (Copilot, Cursor, Cody)",
+        "Line-level and function-level completions",
+        "~30% suggestion acceptance rate",
+        "AI generates ~46% of code (Copilot average)"
+      ],
+      "friction_points": [
+        "66% report 'almost correct but not quite' frustration",
+        "45% say debugging AI code takes longer than writing manually",
+        "Limited context awareness beyond current file"
+      ],
+      "scores": {
+        "session_intensity": 2,
+        "tooling_depth": 1,
+        "autonomy_level": 1,
+        "planning_rigor": 1,
+        "verification_discipline": 2,
+        "multi_project_scope": 1
+      }
+    },
+    {
+      "id": "interactive_pair",
+      "name": "The Interactive Pair Programmer",
+      "description": "Active back-and-forth with an AI agent for feature implementation, debugging, and refactoring. Maintains a CLAUDE.md with project context. Reviews diffs and provides corrections. The 'typical power user' profile that Anthropic's Max plan targets: 4-5 hours daily on complex tasks.",
+      "typical_domain": "Feature development, bug fixes, code review, any domain",
+      "workflow_style": "Conversational, iterative, supervised",
+      "key_patterns": [
+        "CLAUDE.md with project conventions",
+        "Multi-file changes in single sessions",
+        "Active correction and steering",
+        "Uses Claude Code or Cursor agent mode"
+      ],
+      "friction_points": [
+        "Context exhaustion on long sessions",
+        "Agent ignores conventions despite CLAUDE.md",
+        "Rate limit interruptions during flow state"
+      ],
+      "scores": {
+        "session_intensity": 3,
+        "tooling_depth": 2,
+        "autonomy_level": 2,
+        "planning_rigor": 2,
+        "verification_discipline": 3,
+        "multi_project_scope": 2
+      }
+    },
+    {
+      "id": "agentic_engineer",
+      "name": "The Agentic Engineer",
+      "description": "Professional engineer who uses agents to amplify existing expertise. Follows Simon Willison's 'Agentic Engineering' pattern: TDD-first development, verification loops, structured prompts. Boris Cherny (Claude Code creator) exemplifies this: plan mode first, then auto-accept, with parallel sessions. The key differentiator is systematic verification.",
+      "typical_domain": "Professional software engineering, open-source, startups",
+      "workflow_style": "Plan-then-execute, verification-driven",
+      "key_patterns": [
+        "Plan mode before implementation",
+        "Red/green TDD with agents",
+        "Custom slash commands for inner-loop workflows",
+        "Multiple parallel sessions (5+ concurrent)",
+        "Verification loops that improve output 2-3x"
+      ],
+      "friction_points": [
+        "Agent autonomy vs control balance",
+        "Long-context token burn on multi-file refactors",
+        "Iterative retries to fix hallucinations amplify cost"
+      ],
+      "scores": {
+        "session_intensity": 4,
+        "tooling_depth": 3,
+        "autonomy_level": 3,
+        "planning_rigor": 4,
+        "verification_discipline": 5,
+        "multi_project_scope": 2
+      }
+    },
+    {
+      "id": "infrastructure_architect",
+      "name": "The Infrastructure Architect",
+      "description": "Builds meta-tooling on top of Claude Code, treating it as a platform rather than a tool. Custom hooks, skills, MCP servers, knowledge graphs, codebase navigation systems. Invests in infrastructure that compounds: every session benefits from prior sessions' learnings. Rare profile (~top 1-2% of users) with the highest tooling depth.",
+      "typical_domain": "ML research, multi-project orchestration, DevOps/platform engineering",
+      "workflow_style": "Plan-driven, infrastructure-first, multi-project",
+      "key_patterns": [
+        "Custom hooks (pre/post tool use, session start)",
+        "Multiple MCP servers for domain-specific knowledge",
+        "Custom skills for repeatable workflows",
+        "Persistent knowledge across sessions (memory, graphs)",
+        "Cross-project propagation rules",
+        "Hierarchical navigation systems"
+      ],
+      "friction_points": [
+        "Meta-tooling maintenance overhead",
+        "Agent still ignores conventions despite extensive rules",
+        "Planning sessions exhaust context before reaching implementation",
+        "Shallow analysis from agent despite deep context provided"
+      ],
+      "scores": {
+        "session_intensity": 5,
+        "tooling_depth": 5,
+        "autonomy_level": 3,
+        "planning_rigor": 5,
+        "verification_discipline": 4,
+        "multi_project_scope": 5
+      }
+    },
+    {
+      "id": "autonomous_orchestrator",
+      "name": "The Autonomous Orchestrator",
+      "description": "Runs agents headlessly, in parallel worktrees, or as background tasks with minimal interactive guidance. Treats AI agents like CI jobs: define inputs, set constraints, collect outputs. The emerging frontier as models become more capable. Uses autonomous test-driven loops, headless mode, and multi-agent coordination.",
+      "typical_domain": "Platform engineering, large codebases, batch operations",
+      "workflow_style": "Autonomous, batch-oriented, event-driven",
+      "key_patterns": [
+        "Headless mode for batch operations",
+        "Parallel worktrees for isolated changes",
+        "Sub-agent orchestration (TaskCreate)",
+        "Autonomous test-fix loops",
+        "Self-validating pipelines"
+      ],
+      "friction_points": [
+        "Trust calibration: when to intervene vs let run",
+        "Error compounding in long autonomous chains",
+        "Cost unpredictability in autonomous mode",
+        "Only 23% of developers regularly use AI agents"
+      ],
+      "scores": {
+        "session_intensity": 4,
+        "tooling_depth": 4,
+        "autonomy_level": 5,
+        "planning_rigor": 3,
+        "verification_discipline": 4,
+        "multi_project_scope": 4
+      }
+    }
+  ],
+  "dimensions": [
+    {
+      "id": "session_intensity",
+      "name": "Session Intensity",
+      "description": "How many sessions per day and how long each session lasts",
+      "scale": "1 = occasional (<1/day), 2 = regular (1-2/day), 3 = daily driver (3-5/day), 4 = heavy (5-10/day), 5 = extreme (10+/day)"
+    },
+    {
+      "id": "tooling_depth",
+      "name": "Tooling Depth",
+      "description": "How much custom infrastructure is layered on top of Claude Code",
+      "scale": "1 = none (vanilla), 2 = CLAUDE.md only, 3 = CLAUDE.md + commands/skills, 4 = hooks + MCP servers, 5 = full platform (hooks + skills + MCP + knowledge systems)"
+    },
+    {
+      "id": "autonomy_level",
+      "name": "Autonomy Level",
+      "description": "How much the agent operates independently vs under direct supervision",
+      "scale": "1 = inline suggestions only, 2 = supervised agent, 3 = guided autonomy, 4 = semi-autonomous (accept-all), 5 = fully autonomous (headless/background)"
+    },
+    {
+      "id": "planning_rigor",
+      "name": "Planning Rigor",
+      "description": "How structured the approach is before implementation begins",
+      "scale": "1 = ad-hoc prompting, 2 = verbal plan, 3 = plan mode, 4 = written plans with review, 5 = formal plan artifacts with source tracking"
+    },
+    {
+      "id": "verification_discipline",
+      "name": "Verification Discipline",
+      "description": "How systematically output is validated before acceptance",
+      "scale": "1 = no review, 2 = skim diffs, 3 = run tests after, 4 = TDD/verification loops, 5 = multi-layer validation (tests + lint + browser + manual)"
+    },
+    {
+      "id": "multi_project_scope",
+      "name": "Multi-Project Scope",
+      "description": "Whether usage spans one project or many with cross-project concerns",
+      "scale": "1 = single file/task, 2 = single project, 3 = 2-3 projects, 4 = cross-project with propagation, 5 = full portfolio with shared infrastructure"
+    }
+  ],
+  "robert_profile": {
+    "name": "Robert (author)",
+    "archetype_primary": "infrastructure_architect",
+    "archetype_secondary": "agentic_engineer",
+    "scores": {
+      "session_intensity": 5,
+      "tooling_depth": 5,
+      "autonomy_level": 3,
+      "planning_rigor": 5,
+      "verification_discipline": 4,
+      "multi_project_scope": 5
+    },
+    "metrics": {
+      "sessions_total": 171,
+      "sessions_per_day": 10.7,
+      "days_measured": 16,
+      "total_hours": 179,
+      "avg_session_min": 63,
+      "commits": 103,
+      "commits_per_session": 0.6,
+      "tool_calls": {
+        "bash": 2656,
+        "task_create": 244,
+        "read_grep_glob": 4876
+      },
+      "infrastructure": {
+        "custom_hooks": 7,
+        "custom_skills": 15,
+        "mcp_servers": 6,
+        "knowledge_layers": 3,
+        "projects_managed": 6,
+        "indexed_code_nodes": 5889
+      },
+      "friction": {
+        "rate_pct": 17,
+        "buggy_code_incidents": 15,
+        "wrong_approach_incidents": 14
+      }
+    }
+  },
+  "benchmarks": {
+    "adoption": {
+      "ai_coding_monthly": 92.6,
+      "ai_coding_daily": 52,
+      "ai_agents_regularly": 23,
+      "copilot_acceptance_rate": 30,
+      "claude_code_pr_acceptance": 83.8,
+      "claude_code_pr_no_modification": 54.9,
+      "source": "DX Insight (51K devs), Stack Overflow 2025, GitHub telemetry"
+    },
+    "productivity": {
+      "self_reported_gain_pct": 78,
+      "hours_saved_per_week": 3.6,
+      "metr_rct_actual_change_pct": -19,
+      "metr_self_perceived_pct": 20,
+      "faros_tasks_increase_pct": 21,
+      "faros_prs_increase_pct": 98,
+      "faros_bugs_increase_pct": 9,
+      "faros_review_time_increase_pct": 91,
+      "anthropic_internal_productivity_boost_pct": 50,
+      "anthropic_internal_ai_share_of_work_pct": 59,
+      "anthropic_merged_prs_increase_pct": 67,
+      "source": "METR RCT, Faros AI, Anthropic internal (132 engineers, 200K transcripts)"
+    },
+    "quality": {
+      "ai_code_defect_multiplier": 1.7,
+      "ai_code_security_vuln_pct": 48,
+      "trust_ai_code_pct": 33,
+      "almost_correct_frustration_pct": 66,
+      "debug_longer_than_write_pct": 45,
+      "code_churn_increase_pct": 41,
+      "source": "Stack Overflow 2025, JetBrains 2025, Panto AI"
+    },
+    "scale": {
+      "claude_code_github_commit_share_pct": 4,
+      "claude_code_daily_commits": 135000,
+      "copilot_code_generation_share_pct": 46,
+      "ai_overall_code_share_pct": 41,
+      "source": "SemiAnalysis Feb 2026, GitHub telemetry"
+    },
+    "cost": {
+      "median_per_dev_per_day_usd": 6,
+      "p90_per_dev_per_day_usd": 12,
+      "typical_session_tokens_k": "50-200",
+      "cache_read_pct_of_tokens": 90,
+      "source": "Anthropic, Claude Code docs"
+    }
+  },
+  "sources": [
+    {"id": "metr", "label": "METR RCT Study", "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/"},
+    {"id": "faros", "label": "Faros AI Productivity Paradox", "url": "https://www.faros.ai/blog/ai-software-engineering"},
+    {"id": "semianalysis", "label": "SemiAnalysis: Claude Code Inflection Point", "url": "https://newsletter.semianalysis.com/p/claude-code-is-the-inflection-point"},
+    {"id": "anthropic_internal", "label": "How AI is Transforming Work at Anthropic", "url": "https://www.anthropic.com/research/how-ai-is-transforming-work-at-anthropic"},
+    {"id": "stackoverflow", "label": "Stack Overflow Developer Survey 2025", "url": "https://survey.stackoverflow.co/2025/ai"},
+    {"id": "jetbrains", "label": "JetBrains Developer Ecosystem 2025", "url": "https://devecosystem-2025.jetbrains.com/artificial-intelligence"},
+    {"id": "willison", "label": "Simon Willison: Agentic Engineering Patterns", "url": "https://simonwillison.net/2026/Feb/23/agentic-engineering-patterns/"},
+    {"id": "cherny", "label": "Boris Cherny: Claude Code Creator Workflow", "url": "https://x.com/bcherny/status/2007179832300581177"},
+    {"id": "bloomberg", "label": "Bloomberg: The Great Productivity Panic of 2026", "url": "https://www.bloomberg.com/news/articles/2026-02-26/ai-coding-agents-like-claude-code-are-fueling-a-productivity-panic-in-tech"},
+    {"id": "panto", "label": "Panto AI: AI Coding Assistant Statistics 2026", "url": "https://www.getpanto.ai/blog/ai-coding-assistant-statistics"},
+    {"id": "arxiv_prs", "label": "Agentic PRs on GitHub (arXiv)", "url": "https://arxiv.org/abs/2509.14745"},
+    {"id": "arxiv_refactor", "label": "Agentic Refactoring Study (arXiv)", "url": "https://arxiv.org/html/2511.04824v1"},
+    {"id": "claude_code_docs", "label": "Claude Code: Manage Costs", "url": "https://code.claude.com/docs/en/costs"}
+  ]
+}
