@@ -20,21 +20,15 @@ format:
 #| label: setup
 #| echo: false
 import json
+import sys
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import numpy as np
 from pathlib import Path
 
-plt.rcParams.update({
-    "figure.facecolor": "white",
-    "axes.facecolor": "white",
-    "font.family": "sans-serif",
-    "font.size": 11,
-})
-
-SCARLET = "#bb0000"
-DARK_GRAY = "#333333"
-LIGHT_GRAY = "#e8e8e8"
+sys.path.insert(0, str(Path("..").resolve()))
+from _plot_config import SCARLET, DARK_GRAY, LIGHT_GRAY, apply_style, clean_axes
+apply_style()
 
 with open(Path("data/clusters.json")) as f:
     data = json.load(f)
@@ -96,8 +90,7 @@ for i, (bar, ann) in enumerate(zip(bars, annotations)):
     ax.text(x + offset, bar.get_y() + bar.get_height()/2, ann,
             va="center", ha=ha, fontsize=8, color="#666")
 
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+clean_axes(ax)
 ax.invert_yaxis()
 plt.tight_layout()
 plt.show()
@@ -153,8 +146,7 @@ best_jb_k = int(jb_k[np.argmax(jb_sil)])
 ax1.annotate(f"Best: k={best_jb_k}", (best_jb_k, max(jb_sil)),
              textcoords="offset points", xytext=(10, 10), fontsize=9,
              arrowprops=dict(arrowstyle="->", color=SCARLET))
-ax1.spines["top"].set_visible(False)
-ax1.spines["right"].set_visible(False)
+clean_axes(ax1)
 
 # SO silhouette
 so_k = sorted(so["all_results"].keys(), key=int)
@@ -167,8 +159,7 @@ best_so_k = int(so_k[np.argmax(so_sil)])
 ax2.annotate(f"Best: k={best_so_k}", (best_so_k, max(so_sil)),
              textcoords="offset points", xytext=(10, -15), fontsize=9,
              arrowprops=dict(arrowstyle="->", color="#336699"))
-ax2.spines["top"].set_visible(False)
-ax2.spines["right"].set_visible(False)
+clean_axes(ax2)
 
 plt.suptitle("Both Surveys Independently Converge on 3 Clusters",
              fontsize=13, fontweight="bold", y=1.02)
@@ -206,8 +197,7 @@ ax.set_ylabel("t-SNE 2")
 ax.set_title("Developer AI Usage Clusters (JetBrains 2025)",
              fontsize=13, fontweight="bold", pad=12)
 ax.legend(loc="best", fontsize=9, framealpha=0.9, markerscale=3)
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+clean_axes(ax)
 plt.tight_layout()
 plt.show()
 ```
@@ -350,8 +340,7 @@ ax.set_xticklabels([tool_names_map[t] for t in tool_keys], fontsize=10)
 ax.set_ylabel("% of cluster using tool")
 ax.set_title("Tool Adoption by Cluster", fontsize=13, fontweight="bold", pad=12)
 ax.legend(fontsize=8, loc="upper right")
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+clean_axes(ax)
 plt.tight_layout()
 plt.show()
 ```
@@ -417,8 +406,7 @@ ax.set_xlabel("Delegation (0=Myself, 1=Unsure, 2=Delegate)")
 ax.set_title("Delegation Willingness by Cluster (top 10 most-variable tasks)",
              fontsize=13, fontweight="bold", pad=12)
 ax.legend(fontsize=8, loc="lower right")
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+clean_axes(ax)
 ax.set_xlim(0, 2.1)
 plt.tight_layout()
 plt.show()
@@ -446,8 +434,7 @@ ax1.set_xlim(0, 5.5)
 for i, (bar, val) in enumerate(zip(bars1, agent_vals)):
     ax1.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height()/2,
              f"{val:.1f}", va="center", fontsize=10, fontweight="bold")
-ax1.spines["top"].set_visible(False)
-ax1.spines["right"].set_visible(False)
+clean_axes(ax1)
 ax1.invert_yaxis()
 
 # Time saved
@@ -463,8 +450,7 @@ ax2.set_xlim(0, 5.5)
 for i, (bar, val) in enumerate(zip(bars2, time_vals)):
     ax2.text(bar.get_width() + 0.1, bar.get_y() + bar.get_height()/2,
              f"{val:.1f}", va="center", fontsize=10, fontweight="bold")
-ax2.spines["top"].set_visible(False)
-ax2.spines["right"].set_visible(False)
+clean_axes(ax2)
 ax2.invert_yaxis()
 
 plt.suptitle("Agent Adoption & Time Saved by Cluster", fontsize=13, fontweight="bold", y=1.02)
@@ -499,8 +485,7 @@ ax.set_xticklabels(cluster_names, fontsize=10)
 ax.set_ylabel("% of group")
 ax.set_title("Cluster Membership: Claude Code Users vs. All", fontsize=13, fontweight="bold", pad=12)
 ax.legend(fontsize=10)
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+clean_axes(ax)
 
 # Annotate the difference
 for i in range(len(clusters)):
@@ -557,8 +542,7 @@ for ax, metric, label in zip(axes, metrics, metric_labels):
     for j, v in enumerate(vals):
         ax.text(j, v + 0.05, f"{v:.2f}", ha="center", fontsize=9, fontweight="bold",
                 color=SCARLET if j == 0 else DARK_GRAY)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
+    clean_axes(ax)
 
 plt.suptitle("Claude Code Users vs. Copilot-Only vs. ChatGPT-Only",
              fontsize=12, fontweight="bold", y=1.05)
@@ -645,8 +629,7 @@ ax.set_xlim(0, 5.7)
 ax.set_ylim(0, 5.8)
 ax.set_title("Power Users Mapped by Autonomy and Tooling Investment",
              fontsize=13, fontweight="bold", pad=12)
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+clean_axes(ax)
 
 ax.text(1.0, 5.3, "High investment,\nlow autonomy", fontsize=8, color="#999", ha="center")
 ax.text(5.0, 5.3, "High investment,\nhigh autonomy", fontsize=8, color="#999", ha="center")
@@ -695,8 +678,7 @@ if robert.get("daily_sessions"):
     ax.axhline(robert["sessions_per_day"], color=DARK_GRAY, linewidth=1, linestyle="--", alpha=0.5)
     ax.text(len(dates) - 1, robert["sessions_per_day"] + 0.5,
             f'avg: {robert["sessions_per_day"]}', fontsize=8, color=DARK_GRAY)
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
+    clean_axes(ax)
 
 # Tool distribution (top 8)
 ax = axes[1]
@@ -711,8 +693,7 @@ if robert.get("tool_distribution"):
     ax.set_xlabel("Total calls")
     ax.set_title("Tool Distribution", fontweight="bold", fontsize=11)
     ax.invert_yaxis()
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
+    clean_axes(ax)
 
 # Feature flags
 ax = axes[2]
@@ -730,8 +711,7 @@ ax.set_ylabel("% of sessions")
 ax.set_title("Feature Usage", fontweight="bold", fontsize=11)
 for i, v in enumerate(flag_vals):
     ax.text(i, v + 1, f"{v:.0f}%", ha="center", fontsize=10, fontweight="bold")
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
+clean_axes(ax)
 
 plt.suptitle(f"192 Sessions Over 15 Days", fontsize=13, fontweight="bold", y=1.02)
 plt.tight_layout()
