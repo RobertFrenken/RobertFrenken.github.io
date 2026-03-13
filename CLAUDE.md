@@ -45,11 +45,11 @@ The `_quarto.yml` pre-render hook compiles the CV automatically during `quarto r
 - Secondary text (dates, orgs): 10pt italic
 
 ### Section Structure
-1. Education (condensed — single school header)
+1. Education (condensed — single school header, coursework inline)
 2. Professional Experience (GRA combined with sub-entries for labs)
 3. Publications
-4. Projects
-5. Skills & Training (categorized: ML/DL, Data, Infrastructure, Languages, Coursework)
+4. Projects (bulleted descriptions)
+5. Technical Stack (layered grid: Applications → ML Pipeline → Data → Infrastructure → Languages)
 6. Service & Mentorship
 
 ## Build Commands

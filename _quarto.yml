@@ -26,6 +26,8 @@ website:
     right:
       - icon: github
         href: https://github.com/RobertFrenken
+      - text: "🤗"
+        href: https://huggingface.co/buckeyeguy
       - icon: envelope
         href: mailto:frenken.2@osu.edu
   page-footer:

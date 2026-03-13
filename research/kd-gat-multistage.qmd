@@ -1,0 +1,10 @@
+---
+title: "Multi-Stage Knowledge-Distilled VGAE and GAT for Robust Controller-Area-Network Intrusion Detection"
+date: 2025-06-01
+description: "A multi-stage intrusion detection system combining variational graph autoencoders and graph attention networks with knowledge distillation for CAN bus security."
+categories: [intrusion-detection, graph-neural-networks, knowledge-distillation]
+---
+
+**Venue:** Preprint
+
+**Authors:** R Frenken, SG Bhatti, H Zhang, Q Ahmed

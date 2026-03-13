@@ -1,5 +1,8 @@
 /_site/
 /.quarto/
+Frenken – *.pdf
+cover-letter-*.typ
+ncaci-email-draft.md
 posts/claude-code-power-users/data/surveys/
 posts/claude-code-power-users/data/clustering_*.log
 posts/claude-code-power-users/data/render_*.log

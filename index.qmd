@@ -15,12 +15,14 @@ about:
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/robert-frenken/
+    - text: "🤗 Hugging Face"
+      href: https://huggingface.co/buckeyeguy
     - icon: file-earmark-pdf
       text: CV (PDF)
       href: Frenken_Robert_CV.pdf
 ---
 
-PhD student in Industrial & Systems Engineering at The Ohio State University, working at the Center for Automotive Research (CAR). My research focuses on graph neural network-based intrusion detection for in-vehicle networks, with an emphasis on knowledge distillation for deploying lightweight models on resource-constrained automotive platforms.
+PhD student in Industrial & Systems Engineering at The Ohio State University (expected May 2027), working at the Center for Automotive Research (CAR). My research uses graph neural networks and knowledge distillation for intrusion detection on vehicle CAN bus networks — deploying lightweight models on resource-constrained automotive platforms. This summer I'll be at Lawrence Livermore National Laboratory as a Critical Infrastructure Analysis Graduate Intern.
 
 ## Research Interests
 
@@ -31,16 +33,20 @@ PhD student in Industrial & Systems Engineering at The Ohio State University, wo
 
 ## Recent Projects
 
-- **[Ohio Campaign Finance Dashboard](https://ohtransparencymaps.com)** — Interactive data visualization platform exploring political contributions across Ohio legislative districts. Built with D3.js, DuckDB-WASM, and Observable Framework.
+- **[Ohio Campaign Finance Dashboard](https://ohtransparencymaps.com)** — Interactive data visualization platform exploring political contributions across Ohio legislative districts. Built with D3.js, DuckDB-WASM, and Observable Framework — 6 pages, 18+ chart types.
 
-- **[Mobility Systems Lab Documentation](https://osu-car-msl.github.io/lab-setup-guide/)** — Technical knowledge base for lab onboarding, covering HPC workflows, PyTorch/PyG setup, and SLURM job management.
+- **[AgentBeats CRMArena](https://rdi.berkeley.edu/)** — A2A protocol agent for Berkeley RDI's CRM business process benchmark. Schema drift reversal, category-specialized routing across 22 task types.
 
-- **CAIS 2025 Capstone** — Empirical investigation of LLM behavior in game-theoretic scenarios (prisoner's dilemma, battle-of-the-sexes, duopoly markets).
+- **[Mobility Systems Lab Resources](https://osu-car-msl.github.io/lab-setup-guide/)** — Technical knowledge base and [HPC usage dashboard](https://huggingface.co/spaces/buckeyeguy/osc-usage-dashboard) for lab onboarding.
+
+- **CAIS 2025 Capstone** — Empirical investigation of LLM coordination in game-theoretic scenarios (prisoner's dilemma, battle-of-the-sexes, duopoly markets).
 
 ## Technical Skills
 
-**ML/DL:** PyTorch, PyTorch Geometric, Ray, scikit-learn, Weights & Biases
+**ML/DL:** PyTorch, PyTorch Geometric, Ray, MLflow, scikit-learn, Knowledge Distillation, Federated Learning
 
-**Data:** DuckDB, Spark, Hadoop, SQL, Pandas
+**Data:** DuckDB, SQL, Pandas, GeoPandas, Spark, NumPy
 
-**Infrastructure:** AWS, Azure, SLURM, Git, Linux
+**Visualization:** D3.js, Observable Framework, ECharts
+
+**Infrastructure:** SLURM, Docker, Apptainer, Git, GitHub Actions, Cloudflare, Linux
