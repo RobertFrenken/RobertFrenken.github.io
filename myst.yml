@@ -1,0 +1,50 @@
+version: 1
+
+project:
+  title: Robert Frenken
+  description: ISE PhD Student at The Ohio State University
+  authors:
+    - name: Robert Frenken
+      email: frenken.2@osu.edu
+      affiliations:
+        - Ohio State University
+      url: https://robertfrenken.github.io
+  github: https://github.com/RobertFrenken
+  keywords:
+    - graph neural networks
+    - intrusion detection
+    - knowledge distillation
+    - CAN bus
+  toc:
+    - file: index.md
+    - title: Research
+      children:
+        - file: research.md
+        - file: research/kd-gat.md
+        - file: research/cwd-swgd-ids.md
+        - file: research/kd-gat-multistage.md
+    - title: Posts
+      children:
+        - file: posts.md
+        - file: posts/claude-code-power-users/index.md
+    - file: tooling.ipynb
+
+site:
+  title: Robert Frenken
+  nav:
+    - title: Research
+      url: /research
+    - title: Posts
+      url: /posts
+    - title: Tooling
+      url: /tooling
+    - title: CV
+      url: /Frenken_Robert_CV.pdf
+  actions:
+    - title: GitHub
+      url: https://github.com/RobertFrenken
+    - title: HuggingFace
+      url: https://huggingface.co/buckeyeguy
+  options:
+    favicon: images/favicon.ico
+    logo: images/profile_pic.png

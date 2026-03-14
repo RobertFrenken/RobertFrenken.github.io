@@ -1,28 +1,41 @@
 ---
-title: "Robert Frenken"
-image: images/profile_pic.png
-toc: false
-about:
-  template: trestles
-  image-shape: round
-  links:
-    - icon: github
-      text: GitHub
-      href: https://github.com/RobertFrenken
-    - icon: envelope
-      text: Email
-      href: mailto:frenken.2@osu.edu
-    - icon: linkedin
-      text: LinkedIn
-      href: https://www.linkedin.com/in/robert-frenken/
-    - text: "🤗 Hugging Face"
-      href: https://huggingface.co/buckeyeguy
-    - icon: file-earmark-pdf
-      text: CV (PDF)
-      href: Frenken_Robert_CV.pdf
+title: Robert Frenken
+subtitle: ISE PhD Student · The Ohio State University
+thumbnail: images/profile_pic.png
 ---
 
+:::{figure} images/profile_pic.png
+:width: 200px
+:class: rounded-image
+:alt: Robert Frenken
+:::
+
 PhD student in Industrial & Systems Engineering at The Ohio State University (expected May 2027), working at the Center for Automotive Research (CAR). My research uses graph neural networks and knowledge distillation for intrusion detection on vehicle CAN bus networks — deploying lightweight models on resource-constrained automotive platforms. This summer I'll be at Lawrence Livermore National Laboratory as a Critical Infrastructure Analysis Graduate Intern.
+
+::::{grid} 1 1 2 5
+:gutter: 2
+
+:::{grid-item}
+[GitHub](https://github.com/RobertFrenken)
+:::
+
+:::{grid-item}
+[Email](mailto:frenken.2@osu.edu)
+:::
+
+:::{grid-item}
+[LinkedIn](https://www.linkedin.com/in/robert-frenken/)
+:::
+
+:::{grid-item}
+[HuggingFace](https://huggingface.co/buckeyeguy)
+:::
+
+:::{grid-item}
+[CV (PDF)](Frenken_Robert_CV.pdf)
+:::
+
+::::
 
 ## Research Interests
 

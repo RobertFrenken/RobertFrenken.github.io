@@ -1,4 +1,4 @@
-name: Quarto Publish
+name: MyST Publish
 
 on:
   push:
@@ -24,19 +24,30 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install MyST
+        run: npm install -g mystmd
 
       - name: Install Typst
         uses: typst-community/setup-typst@v4
 
-      - name: Render
-        uses: quarto-dev/quarto-actions/render@v2
+      - name: Compile CV
+        run: typst compile cv.typ Frenken_Robert_CV.pdf
+
+      - name: Build site
+        run: myst build --html
+
+      - name: Copy CV to build output
+        run: cp Frenken_Robert_CV.pdf _build/html/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: _build/html
 
       - name: Deploy to GitHub Pages
         id: deployment
