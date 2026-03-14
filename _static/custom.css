@@ -1,0 +1,68 @@
+/* Brand colors */
+:root {
+  --scarlet: #bb0000;
+  --dark-gray: #333333;
+  --border-light: #dee2e6;
+  --text-muted: #666666;
+}
+
+/* Override theme primary color */
+:root,
+[data-theme="light"] {
+  --pst-color-primary: var(--scarlet);
+  --pst-color-link: var(--scarlet);
+  --pst-color-link-hover: #990000;
+}
+
+/* Font */
+body {
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Heading accent */
+h2 {
+  border-bottom: 2px solid var(--scarlet);
+  padding-bottom: 0.3rem;
+}
+
+/* Rounded profile image on homepage */
+.rounded-image img {
+  border-radius: 50%;
+  max-width: 200px;
+}
+
+/* Stat cards (blog post) */
+.stat-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  flex: 1 1 140px;
+  max-width: 200px;
+  padding: 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--scarlet);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+/* Figures */
+figure img {
+  max-width: 100%;
+  height: auto;
+}

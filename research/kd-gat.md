@@ -1,8 +1,7 @@
 ---
 title: "KD-GAT: Combining Knowledge Distillation and Graph Attention Transformer for a Controller Area Network Intrusion Detection System"
 date: 2025-05-01
-description: "An intrusion detection framework based on Graph Attention Networks and knowledge distillation for CAN bus security."
-categories: [intrusion-detection, graph-neural-networks, knowledge-distillation]
+description: An intrusion detection framework based on Graph Attention Networks and knowledge distillation for CAN bus security.
 ---
 
 **Venue:** IEEE International Conference on Intelligent Transportation Systems (ITSC) 2025 *(to appear)*
@@ -17,4 +16,8 @@ The Controller Area Network (CAN) protocol is widely adopted for in-vehicle comm
 
 ## Architecture
 
-![KD-GAT Architecture](../images/Graph-example.png)
+:::{figure} ../images/Graph-example.png
+:label: fig-kd-gat-arch
+:alt: KD-GAT Architecture
+KD-GAT Architecture
+:::

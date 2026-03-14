@@ -1,5 +1,5 @@
-/_site/
-/.quarto/
+/_build/
+/node_modules/
 Frenken – *.pdf
 cover-letter-*.typ
 ncaci-email-draft.md
