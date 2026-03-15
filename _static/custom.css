@@ -1,37 +1,192 @@
-/* Brand colors */
+/* --- Font import (must be first) --- */
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap");
+
+/* ==========================================================
+   Robert Frenken — Custom Theme Overrides
+   Target: MyST book-theme (Tailwind-based)
+   ========================================================== */
+
+/* --- Brand tokens --- */
 :root {
   --scarlet: #bb0000;
-  --dark-gray: #333333;
-  --border-light: #dee2e6;
-  --text-muted: #666666;
+  --scarlet-dark: #990000;
+  --scarlet-light: #dd2222;
+  --gray-900: #1a1a1a;
+  --gray-700: #333333;
+  --gray-500: #666666;
+  --gray-200: #dee2e6;
+  --font-body: "Source Sans 3", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Override theme primary color */
-:root,
-[data-theme="light"] {
-  --pst-color-primary: var(--scarlet);
-  --pst-color-link: var(--scarlet);
-  --pst-color-link-hover: #990000;
-}
-
-/* Font */
+/* --- Typography --- */
 body {
-  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-body);
 }
 
-/* Heading accent */
-h2 {
+/* Prose content inherits body font */
+.prose {
+  font-family: inherit;
+}
+
+/* --- Links: scarlet accent --- */
+article a,
+.prose a {
+  color: var(--scarlet);
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.15s ease;
+}
+
+article a:hover,
+.prose a:hover {
+  color: var(--scarlet-dark);
+  text-decoration-color: var(--scarlet-dark);
+}
+
+/* Dark mode links */
+.dark article a,
+.dark .prose a {
+  color: var(--scarlet-light);
+}
+
+.dark article a:hover,
+.dark .prose a:hover {
+  color: #ff4444;
+  text-decoration-color: #ff4444;
+}
+
+/* --- Top nav: scarlet accent on hover --- */
+.myst-top-nav a:hover {
+  color: var(--scarlet) !important;
+}
+
+/* Active nav item */
+.myst-top-nav-item a[aria-current="page"] {
+  color: var(--scarlet);
+  font-weight: 600;
+}
+
+/* --- Sidebar TOC: scarlet active state --- */
+.myst-toc-item.active,
+.myst-toc-item[aria-current="page"] {
+  color: var(--scarlet);
+  font-weight: 600;
+}
+
+.myst-primary-sidebar a:hover {
+  color: var(--scarlet) !important;
+}
+
+/* --- Headings --- */
+article h2 {
   border-bottom: 2px solid var(--scarlet);
   padding-bottom: 0.3rem;
+  margin-top: 2rem;
 }
 
-/* Rounded profile image on homepage */
-.rounded-image img {
+/* Section link anchors */
+article h2 a,
+article h3 a {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+/* --- Frontmatter: clean up for personal site --- */
+/* Hide the "Edit this page" and GitHub repo links in frontmatter header */
+.myst-fm-block-header {
+  display: none !important;
+}
+
+/* Tone down author/affiliation block */
+.myst-fm-authors-affiliations {
+  margin-top: 0.5rem;
+}
+
+/* --- Profile image: circular --- */
+.rounded-image img,
+.fig-figure.rounded-image img {
   border-radius: 50%;
   max-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-/* Stat cards (blog post) */
+/* --- Grid cards (link row on homepage) --- */
+.myst-grid {
+  gap: 0.75rem;
+}
+
+.myst-grid a {
+  color: var(--gray-700);
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.myst-grid a:hover {
+  color: var(--scarlet);
+}
+
+.dark .myst-grid a {
+  color: #e5e5e5;
+}
+
+.dark .myst-grid a:hover {
+  color: var(--scarlet-light);
+}
+
+/* --- Footer links: scarlet border on hover --- */
+.myst-footer-link:hover {
+  border-color: var(--scarlet) !important;
+  color: var(--scarlet) !important;
+}
+
+.dark .myst-footer-link:hover {
+  border-color: var(--scarlet-light) !important;
+  color: var(--scarlet-light) !important;
+}
+
+/* --- Search bar: scarlet focus ring --- */
+.myst-search-bar:hover,
+.myst-search-bar:focus-within {
+  border-color: var(--scarlet) !important;
+  ring-color: var(--scarlet) !important;
+}
+
+/* --- Theme toggle: scarlet hover --- */
+.myst-theme-button:hover {
+  color: var(--scarlet) !important;
+}
+
+/* --- "Made with MyST" sidebar footer: subtle --- */
+.myst-made-with-myst {
+  opacity: 0.5;
+  font-size: 0.75rem;
+}
+
+.myst-made-with-myst:hover {
+  opacity: 1;
+}
+
+/* --- Document outline (right sidebar): scarlet active marker --- */
+.document-outline a.active,
+[aria-label="Document Outline"] a.active,
+.col-margin-right a.active {
+  color: var(--scarlet) !important;
+  border-left-color: var(--scarlet) !important;
+}
+
+/* Outline hover */
+[aria-label="Document Outline"] a:hover,
+.col-margin-right a:hover {
+  color: var(--scarlet) !important;
+}
+
+/* --- Top nav logo text: use our name, not "Made with MyST" --- */
+.myst-home-link-logo + span,
+.myst-home-link > span:last-child {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* --- Stat cards (blog post) --- */
 .stat-cards {
   display: flex;
   flex-wrap: wrap;
@@ -43,7 +198,7 @@ h2 {
   flex: 1 1 140px;
   max-width: 200px;
   padding: 1rem;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--gray-200);
   border-radius: 0.5rem;
   text-align: center;
 }
@@ -57,12 +212,19 @@ h2 {
 
 .stat-label {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--gray-500);
   margin-top: 0.25rem;
 }
 
-/* Figures */
+/* --- Figures --- */
 figure img {
   max-width: 100%;
   height: auto;
+}
+
+/* --- Action buttons (top-right: GitHub, HuggingFace) --- */
+.myst-top-nav a.inline-block:hover {
+  background-color: var(--scarlet) !important;
+  border-color: var(--scarlet) !important;
+  color: white !important;
 }

@@ -9,7 +9,6 @@ project:
       affiliations:
         - Ohio State University
       url: https://robertfrenken.github.io
-  github: https://github.com/RobertFrenken
   keywords:
     - graph neural networks
     - intrusion detection
@@ -48,3 +47,5 @@ site:
   options:
     favicon: images/favicon.ico
     logo: images/profile_pic.png
+    logo_text: Robert Frenken
+    style: _static/custom.css

@@ -2,6 +2,8 @@
 title: Robert Frenken
 subtitle: ISE PhD Student · The Ohio State University
 thumbnail: images/profile_pic.png
+site:
+  hide_outline: true
 ---
 
 :::{figure} images/profile_pic.png
