@@ -7,3 +7,7 @@ posts/claude-code-power-users/data/surveys/
 posts/claude-code-power-users/data/clustering_*.log
 posts/claude-code-power-users/data/render_*.log
 posts/__pycache__/
+
+## Playwright Artifacts
+playwright_artifacts/
+.playwright-mcp/
