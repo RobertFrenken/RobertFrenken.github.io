@@ -39,6 +39,14 @@ PhD student in Industrial & Systems Engineering at The Ohio State University (ex
 
 ::::
 
+## News
+
+- **Summer 2026** — Starting as Critical Infrastructure Analysis Graduate Intern at Lawrence Livermore National Laboratory
+- **Mar 2026** — New post: [How Developers Actually Use AI Coding Tools](posts/claude-code-power-users/index.md) — clustering 73k developers across JetBrains and Stack Overflow surveys
+- **Jan 2026** — Submitted [CWD-SWGD-IDS](research.md) (co-authored) to IEEE ITSC 2026
+- **Jun 2025** — Released [multi-stage KD-GAT preprint](research.md)
+- **May 2025** — [KD-GAT](research/kd-gat.md) accepted to IEEE ITSC 2025
+
 ## Research Interests
 
 - Graph neural networks for cybersecurity in automotive systems

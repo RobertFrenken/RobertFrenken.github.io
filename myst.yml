@@ -20,23 +20,24 @@ project:
       children:
         - file: research.md
         - file: research/kd-gat.md
-        - file: research/cwd-swgd-ids.md
-        - file: research/kd-gat-multistage.md
-    - title: Posts
+    - title: Talks
+      children:
+        - file: talks.md
+        - file: talks/cse5469-entity-hallucinations.md
+    - title: Blog
       children:
         - file: posts.md
         - file: posts/claude-code-power-users/index.md
-    - file: tooling.ipynb
 
 site:
   title: Robert Frenken
   nav:
     - title: Research
       url: /research
-    - title: Posts
+    - title: Talks
+      url: /talks
+    - title: Blog
       url: /posts
-    - title: Tooling
-      url: /tooling
     - title: CV
       url: /Frenken_Robert_CV.pdf
   actions:
