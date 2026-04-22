@@ -1,8 +1,8 @@
 /_build/
 /node_modules/
-Frenken – *.pdf
-cover-letter-*.typ
-ncaci-email-draft.md
+# CV drafts (personal application materials)
+cv/drafts/*
+!cv/drafts/.gitkeep
 posts/claude-code-power-users/data/surveys/
 posts/claude-code-power-users/data/clustering_*.log
 posts/claude-code-power-users/data/render_*.log

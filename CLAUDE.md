@@ -13,8 +13,9 @@ Personal academic website built with MyST.
 | File | Purpose |
 |------|---------|
 | `myst.yml` | Project + site config, TOC, nav |
-| `cv.typ` | CV source (Typst) — single source of truth for resume |
-| `Frenken_Robert_CV.pdf` | Compiled CV (generated, do not edit) |
+| `cv/cv.typ` | CV source (Typst) — single source of truth for resume |
+| `cv/Frenken_Robert_CV.pdf` | Compiled CV (generated, do not edit) |
+| `cv/drafts/` | Gitignored — cover letters and application-specific drafts |
 | `index.md` | Homepage |
 | `research.md` | Research listing |
 | `posts.md` | Blog posts listing (manual, pending blog plugin) |
@@ -25,8 +26,8 @@ Personal academic website built with MyST.
 
 The CV is written in Typst for better editing experience (full LSP support via Tinymist extension).
 
-**Edit**: `cv.typ` — Typst source with page setup, helpers, and content
-**Compile**: `typst compile cv.typ Frenken_Robert_CV.pdf`
+**Edit**: `cv/cv.typ` — Typst source with page setup, helpers, and content
+**Compile**: `typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf` (the `--root .` flag lets Typst reach `images/icons/` at repo root)
 **Preview**: Use Tinymist extension's live preview, or compile manually
 
 CI compiles the CV in a separate step before `myst build`.
@@ -57,8 +58,8 @@ CI compiles the CV in a separate step before `myst build`.
 ## Build Commands
 
 ```bash
-# Compile CV only
-typst compile cv.typ Frenken_Robert_CV.pdf
+# Compile CV only (run from repo root)
+typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf
 
 # Build entire site
 myst build --html
@@ -67,7 +68,7 @@ myst build --html
 myst start
 
 # Full build (CV + site)
-typst compile cv.typ Frenken_Robert_CV.pdf && myst build --html
+typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf && myst build --html
 ```
 
 ## Dependencies

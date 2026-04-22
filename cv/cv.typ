@@ -22,7 +22,7 @@
     #link("mailto:frenken.2@osu.edu")[frenken.2\@osu.edu] · Columbus, OH · #link("https://robertfrenken.github.io")[Website]
   ]
   #text(size: 10pt)[
-    #icon("images/icons/github.svg") #link("https://github.com/RobertFrenken")[GitHub] · #icon("images/icons/huggingface.svg") #link("https://huggingface.co/buckeyeguy")[Hugging Face] · #icon("images/icons/linkedin.svg") #link("https://www.linkedin.com/in/robert-frenken/")[LinkedIn] · #icon("images/icons/google-scholar.svg") #link("https://scholar.google.com/citations?user=_VbkYiwAAAAJ")[Scholar]
+    #icon("../images/icons/github.svg") #link("https://github.com/RobertFrenken")[GitHub] · #icon("../images/icons/huggingface.svg") #link("https://huggingface.co/buckeyeguy")[Hugging Face] · #icon("../images/icons/linkedin.svg") #link("https://www.linkedin.com/in/robert-frenken/")[LinkedIn] · #icon("../images/icons/google-scholar.svg") #link("https://scholar.google.com/citations?user=_VbkYiwAAAAJ")[Scholar]
   ]
 ]
 
