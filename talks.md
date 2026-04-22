@@ -18,7 +18,7 @@ Conference talks, invited lectures, and class presentations. Slide decks are bui
 :::{note} Talk-entry convention
 :class: dropdown
 
-Each talk lives at `talks/<slug>.md` with the structure below. Slidev decks live in a **course-coded monorepo** (one repo per course or talk series) — e.g. [`CSE-5469-lecture-slides`](https://github.com/RobertFrenken/CSE-5469-lecture-slides) — with each deck as a subdirectory and shared styling / Vue components promoted to a `shared/` Slidev addon. Each deck deploys to its own sub-path on GitHub Pages.
+Each talk lives at `talks/<slug>.md` with the structure below. Slidev decks live in a single [**`presentations/`**](https://github.com/RobertFrenken/presentations) monorepo — each deck is a subdirectory, shared styling and Vue components live in `shared/` as a Slidev addon, and each deck deploys to its own sub-path on GitHub Pages under `robertfrenken.github.io/presentations/<deck>/`.
 
 ```markdown
 ---
@@ -49,7 +49,7 @@ date: YYYY-MM-DD
 
 **Thumbnails:** save a 16:9 screenshot of the title slide as `talks/<slug>-thumb.png` and reference it in the talk entry's frontmatter (`thumbnail: talks/<slug>-thumb.png`).
 
-**Why a separate monorepo per course (not this repo)?** Slidev's Vite build doesn't play well inside MyST's build pipeline. Keeping decks in a separate repo isolates tooling and keeps the main site's build fast. Using one repo per course (instead of per-talk) lets shared styling, layouts, and reusable Vue components (e.g. an attention visualizer that gets used across multiple talks) live in `shared/` as a Slidev addon and be pulled into every deck via `addons: [../shared]` in the deck's frontmatter.
+**Why a separate monorepo (not this repo)?** Slidev's Vite build doesn't play well inside MyST's build pipeline. Keeping decks in a separate repo isolates tooling and keeps the main site's build fast. Bundling all talks into one monorepo (instead of per-talk repos) lets shared styling, layouts, and reusable Vue components (e.g. an attention visualizer that gets reused across multiple talks) live in `shared/` as a Slidev addon and be pulled into every deck via `addons: [../shared]` in the deck's frontmatter.
 
-**New-deck checklist:** mkdir `<deck-slug>/` in the course repo, create `slides.md` with `addons: [../shared]` + `theme: academic`, add build/dev/export scripts to the root `package.json`, register the deck in the course repo's `scripts/write-index.mjs`, then add a `talks/<slug>.md` entry here pointing at the deployed URL.
+**New-deck checklist:** mkdir `<deck-slug>/` in the presentations repo, create `slides.md` with `addons: [../shared]` + `theme: academic`, add build/dev/export scripts to the root `package.json`, register the deck in `scripts/write-index.mjs`, then add a `talks/<slug>.md` entry here pointing at the deployed URL.
 :::

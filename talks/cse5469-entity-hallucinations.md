@@ -6,7 +6,7 @@ date: 2026-02-11
 
 **Venue:** CSE 5469 — Ohio State University
 **Duration:** 25 minutes
-**Slides:** [Live deck](https://robertfrenken.github.io/CSE-5469-lecture-slides/entity-hallucinations/) · [Source](https://github.com/RobertFrenken/CSE-5469-lecture-slides/tree/main/entity-hallucinations)
+**Slides:** [Live deck](https://robertfrenken.github.io/presentations/entity-hallucinations/) · [Source](https://github.com/RobertFrenken/presentations/tree/main/entity-hallucinations)
 **Paper:** Ferrando, J., Obeso, O., Rajamanoharan, S., & Nanda, N. (2025). *Do I Know This Entity? Knowledge Awareness and Hallucinations in Language Models.* ICLR 2025.
 
 ## Abstract
