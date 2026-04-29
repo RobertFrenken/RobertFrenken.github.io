@@ -12,7 +12,7 @@ site:
 :alt: Robert Frenken
 :::
 
-PhD student in Industrial & Systems Engineering at The Ohio State University (expected May 2027), working at the Center for Automotive Research (CAR). My research uses graph neural networks and knowledge distillation for intrusion detection on vehicle CAN bus networks — deploying lightweight models on resource-constrained automotive platforms. This summer I'll be at Lawrence Livermore National Laboratory as a Critical Infrastructure Analysis Graduate Intern.
+PhD student in Industrial & Systems Engineering at The Ohio State University (expected May 2027), working at the Center for Automotive Research (CAR). My research uses graph neural networks and knowledge distillation for intrusion detection on vehicle CAN bus networks — deploying lightweight models on resource-constrained automotive platforms. This summer I'll be at Lawrence Livermore National Laboratory (LLNL) working on multi-agent simulations for power grid defense.
 
 ::::{grid} 1 1 2 5
 :gutter: 2
@@ -43,7 +43,7 @@ PhD student in Industrial & Systems Engineering at The Ohio State University (ex
 
 - **Summer 2026** — Starting as Critical Infrastructure Analysis Graduate Intern at Lawrence Livermore National Laboratory
 - **Mar 2026** — New post: [How Developers Actually Use AI Coding Tools](posts/claude-code-power-users/index.md) — clustering 73k developers across JetBrains and Stack Overflow surveys
-- **Jan 2026** — Submitted [CWD-SWGD-IDS](research.md) (co-authored) to IEEE ITSC 2026
+- **Mar 2026** — Submitted [CWD-SWGD-IDS](research.md) (co-authored) to IEEE ITSC 2026
 - **Jun 2025** — Released [multi-stage KD-GAT preprint](research.md)
 - **May 2025** — [KD-GAT](research/kd-gat.md) accepted to IEEE ITSC 2025
 
@@ -56,9 +56,7 @@ PhD student in Industrial & Systems Engineering at The Ohio State University (ex
 
 ## Recent Projects
 
-- **[Ohio Campaign Finance Dashboard](https://ohtransparencymaps.com)** — Interactive data visualization platform exploring political contributions across Ohio legislative districts. Built with D3.js, DuckDB-WASM, and Observable Framework — 6 pages, 18+ chart types.
-
-- **[AgentBeats CRMArena](https://rdi.berkeley.edu/)** — A2A protocol agent for Berkeley RDI's CRM business process benchmark. Schema drift reversal, category-specialized routing across 22 task types.
+- **[Ohio Campaign Finance Dashboard](https://ohtransparencymaps.com)** — Interactive data visualization platform exploring political contributions across Ohio legislative districts. Built with D3.js, Map-Libre, and Sevelteplot.
 
 - **[Mobility Systems Lab Resources](https://osu-car-msl.github.io/lab-setup-guide/)** — Technical knowledge base and [HPC usage dashboard](https://huggingface.co/spaces/buckeyeguy/osc-usage-dashboard) for lab onboarding.
 
@@ -70,6 +68,6 @@ PhD student in Industrial & Systems Engineering at The Ohio State University (ex
 
 **Data:** DuckDB, SQL, Pandas, GeoPandas, Spark, NumPy
 
-**Visualization:** D3.js, Observable Framework, ECharts
+**Visualization:** Matplotlib, Vega Altair, D3.js, Observable Plot, Svelteplot
 
-**Infrastructure:** SLURM, Docker, Apptainer, Git, GitHub Actions, Cloudflare, Linux
+**Infrastructure:** SLURM, Docker, Git, Cloudflare, Linux
