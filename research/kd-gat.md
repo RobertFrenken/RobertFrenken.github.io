@@ -4,11 +4,11 @@ date: 2025-05-01
 description: An intrusion detection framework based on Graph Attention Networks and knowledge distillation for CAN bus security.
 ---
 
-**Venue:** IEEE International Conference on Intelligent Transportation Systems (ITSC) 2025 *(to appear)*
+**Venue:** IEEE International Conference on Intelligent Transportation Systems (ITSC) 2025
 
 **Authors:** R Frenken, SG Bhatti, H Zhang, Q Ahmed
 
-[Paper PDF](../files/IEEE_ITSC_2025-2.pdf)
+[Paper PDF](../files/IEEE_ITSC_2025-2.pdf) | [IEEE Link](https://ieeexplore.ieee.org/document/11423252)
 
 ## Abstract
 
