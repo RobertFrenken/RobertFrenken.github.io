@@ -1,5 +1,6 @@
-/_build/
-/node_modules/
+/_site/
+/_freeze/
+/.quarto/
 # CV drafts (personal application materials)
 cv/drafts/*
 !cv/drafts/.gitkeep

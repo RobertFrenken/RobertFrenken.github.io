@@ -1,0 +1,75 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - "*.md"
+    - "*.qmd"
+    - "!CLAUDE.md"
+  resources:
+    - "Frenken_Robert_CV.pdf"
+    - "files/**"
+
+website:
+  title: "Robert Frenken"
+  description: "ISE PhD Student at The Ohio State University"
+  site-url: https://robertfrenken.github.io
+  favicon: images/favicon.ico
+  navbar:
+    background: light
+    logo: images/profile_pic.png
+    title: "Robert Frenken"
+    left:
+      - text: Research
+        href: research.md
+      - text: Talks
+        href: talks.md
+      - text: Blog
+        href: posts.md
+      - text: CV
+        href: Frenken_Robert_CV.pdf
+    right:
+      - icon: github
+        href: https://github.com/RobertFrenken
+        aria-label: GitHub
+      - text: HuggingFace
+        href: https://huggingface.co/buckeyeguy
+  sidebar:
+    style: floating
+    collapse-level: 2
+    contents:
+      - index.md
+      - section: Research
+        contents:
+          - research.md
+          - research/kd-gat.md
+      - section: Talks
+        contents:
+          - talks.md
+          - talks/cse5469-mamba.md
+          - talks/cse5469-entity-hallucinations.md
+      - section: Blog
+        contents:
+          - posts.md
+
+format:
+  html:
+    theme:
+      light: cosmo
+      dark: darkly
+    css: _static/custom.css
+    toc: true
+    toc-location: right
+    smooth-scroll: true
+    link-external-newwindow: true
+
+author:
+  - name: Robert Frenken
+    email: frenken.2@osu.edu
+    affiliation: Ohio State University
+    url: https://robertfrenken.github.io
+
+keywords:
+  - graph neural networks
+  - intrusion detection
+  - knowledge distillation
+  - CAN bus

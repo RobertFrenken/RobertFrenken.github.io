@@ -10,13 +10,16 @@ Conference talks, invited lectures, and class presentations. Slide decks are bui
 
 ## 2026
 
+- **[Mamba: Linear-Time Sequence Modeling with Selective State Spaces](talks/cse5469-mamba.md)** (May 1, 2026)
+  Paper presentation for CSE 5469 on Gu & Dao (COLM 2024) — selective state spaces with hardware-aware parallel scan for linear-time sequence modeling.
+
 - **[Do I Know This Entity? Knowledge Awareness and Hallucinations in Language Models](talks/cse5469-entity-hallucinations.md)** (Feb 11, 2026)
   Paper presentation for CSE 5469 on Ferrando et al. (ICLR 2025) — SAE steering reveals causal directions for entity recognition in language models.
 
 ---
 
-:::{note} Talk-entry convention
-:class: dropdown
+::: {.callout-note collapse="true"}
+## Talk-entry convention
 
 Each talk lives at `talks/<slug>.md` with the structure below. Slidev decks live in a single [**`presentations/`**](https://github.com/RobertFrenken/presentations) monorepo — each deck is a subdirectory, shared styling and Vue components live in `shared/` as a Slidev addon, and each deck deploys to its own sub-path on GitHub Pages under `robertfrenken.github.io/presentations/<deck>/`.
 

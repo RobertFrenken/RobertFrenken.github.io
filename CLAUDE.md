@@ -1,26 +1,25 @@
 # RobertFrenken.github.io
 
-Personal academic website built with MyST.
+Personal academic website built with Quarto.
 
 ## Tech Stack
 
-- **Framework**: MyST (mystmd.org) — Jupyter ecosystem, unified.js AST
+- **Framework**: Quarto (quarto.org) — Pandoc-based, multi-format publishing
 - **CV**: Typst (standalone `.typ` file, compiled to PDF separately)
-- **Hosting**: GitHub Pages (React SPA via `myst build --html`)
+- **Hosting**: GitHub Pages (`quarto render` → static HTML)
 
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `myst.yml` | Project + site config, TOC, nav |
+| `_quarto.yml` | Project + website config, navbar, sidebar, theme |
 | `cv/cv.typ` | CV source (Typst) — single source of truth for resume |
 | `cv/Frenken_Robert_CV.pdf` | Compiled CV (generated, do not edit) |
 | `cv/drafts/` | Gitignored — cover letters and application-specific drafts |
 | `index.md` | Homepage |
 | `research.md` | Research listing |
-| `posts.md` | Blog posts listing (manual, pending blog plugin) |
-| `tooling.md` | Tooling dashboard (placeholder, pending OJS→Jupyter migration) |
-| `_static/custom.css` | Custom styles (scarlet accent, Source Sans Pro) |
+| `posts.md` | Blog posts listing (manual, pending listing page conversion) |
+| `_static/custom.css` | Custom styles (scarlet accent, Source Sans 3) |
 
 ## CV Workflow
 
@@ -30,7 +29,7 @@ The CV is written in Typst for better editing experience (full LSP support via T
 **Compile**: `typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf` (the `--root .` flag lets Typst reach `images/icons/` at repo root)
 **Preview**: Use Tinymist extension's live preview, or compile manually
 
-CI compiles the CV in a separate step before `myst build`.
+CI compiles the CV in a separate step before `quarto render`, then copies the PDF into `_site/` so it serves at `/Frenken_Robert_CV.pdf`.
 
 ## CV Conventions
 
@@ -61,35 +60,39 @@ CI compiles the CV in a separate step before `myst build`.
 # Compile CV only (run from repo root)
 typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf
 
-# Build entire site
-myst build --html
+# Render entire site (output: _site/)
+quarto render
 
-# Preview site locally
-myst start
+# Preview site locally with live reload
+quarto preview
 
 # Full build (CV + site)
-typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf && myst build --html
+typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf && quarto render
 ```
 
 ## Dependencies
 
-- Node.js v20+ (for MyST)
-- MyST CLI (`npm install -g mystmd`)
-- Typst (for CV compilation) — installed at `~/.local/bin/typst` on OSC
+- Quarto 1.4+ (`~/.local/bin/quarto` on OSC)
+- Typst (for CV compilation) — `~/.local/bin/typst` on OSC
 
-## MyST Conventions
+## Quarto Conventions
 
 ### Syntax
-- Directives: `:::{name}` (block-level extensions)
-- Roles: `` {name}`content` `` (inline extensions)
-- Cross-references: `[](#label)` or `@label`
-- Figures: `:::{figure} path` with `:label:` option
-- Admonitions: `:::{note}`, `:::{warning}`, etc.
+- Pages stay `.md` (Quarto supports both `.md` and `.qmd`)
+- Figures: `![Caption](path){#fig-label width=600 fig-alt="..."}` — `#fig-` prefix enables cross-refs as `@fig-label`
+- Callouts: `::: {.callout-note collapse="true"}\n## Title\nbody\n:::` (also `callout-tip`, `callout-warning`, `callout-important`, `callout-caution`)
+- Tabs: `::: {.panel-tabset}\n## Tab 1\n...\n## Tab 2\n...\n:::`
+- Cross-references: `@fig-label`, `@sec-label`, `@tbl-label`
+- Per-page front matter overrides project defaults (e.g. `format.html.toc: false` to drop the right-hand outline)
+
+### Project Layout
+- `_quarto.yml` allowlist: `*.md`, `*.qmd`, `!CLAUDE.md` — keeps project instructions out of the rendered site
+- Resources copied as-is: `Frenken_Robert_CV.pdf`, `files/**` (PDFs), images via `images/`
+- Theme: `light: cosmo, dark: darkly` — Bootstrap 5 base, dark-mode toggle built in
 
 ### Known Gaps
-- Blog listing is manual (no categories/RSS yet — see `~/plans/myst-blog-plugin.md`)
-- Tooling page is a placeholder (OJS charts need migration to Jupyter)
-- Only 2 built-in themes (book, article)
+- Blog listing is manual (no Quarto listing page yet — `posts.md` is hand-written)
 
-# currentDate
-Today's date is 2026-03-14.
+## History
+
+Reverted from MyST back to Quarto on 2026-05-08. Previously migrated Quarto → MyST on 2026-03-14 over parser-extensibility and React-SPA arguments; that experiment did not survive contact with myst-theme fork maintenance and the absence of a built-in blog. The `claude-code-power-users` post was deleted in the same change.

@@ -2,48 +2,28 @@
 title: Robert Frenken
 subtitle: ISE PhD Student · The Ohio State University
 thumbnail: images/profile_pic.png
-site:
-  hide_outline: true
+format:
+  html:
+    toc: false
 ---
 
-:::{figure} images/profile_pic.png
-:width: 200px
-:class: rounded-image
-:alt: Robert Frenken
-:::
+![Robert Frenken](images/profile_pic.png){.rounded-image width=200px fig-alt="Robert Frenken"}
 
-PhD student in Industrial & Systems Engineering at The Ohio State University (expected May 2027), working at the Center for Automotive Research (CAR). My research uses graph neural networks and knowledge distillation for intrusion detection on vehicle CAN bus networks — deploying lightweight models on resource-constrained automotive platforms. This summer I'll be at Lawrence Livermore National Laboratory (LLNL) working on multi-agent simulations for power grid defense.
+PhD student in Industrial & Systems Engineering at The Ohio State University (expected May 2027), working at the Center for Automotive Research (CAR). My research uses graph neural networks and knowledge distillation for intrusion detection on vehicle CAN bus networks — deploying lightweight models on resource-constrained automotive platforms.
 
-::::{grid} 1 1 2 5
-:gutter: 2
+::: {.profile-links}
 
-:::{grid-item}
-[GitHub](https://github.com/RobertFrenken)
-:::
-
-:::{grid-item}
-[Email](mailto:frenken.2@osu.edu)
-:::
-
-:::{grid-item}
-[LinkedIn](https://www.linkedin.com/in/robert-frenken/)
-:::
-
-:::{grid-item}
-[HuggingFace](https://huggingface.co/buckeyeguy)
-:::
-
-:::{grid-item}
-[CV (PDF)](Frenken_Robert_CV.pdf)
-:::
-
-::::
+- [GitHub](https://github.com/RobertFrenken)
+- [Email](mailto:frenken.2@osu.edu)
+- [LinkedIn](https://www.linkedin.com/in/robert-frenken/)
+- [HuggingFace](https://huggingface.co/buckeyeguy)
+- [CV (PDF)](Frenken_Robert_CV.pdf)
+  :::
 
 ## News
 
 - **Summer 2026** — Starting as Critical Infrastructure Analysis Graduate Intern at Lawrence Livermore National Laboratory
-- **Mar 2026** — New post: [How Developers Actually Use AI Coding Tools](posts/claude-code-power-users/index.md) — clustering 73k developers across JetBrains and Stack Overflow surveys
-- **Mar 2026** — Submitted [CWD-SWGD-IDS](research.md) (co-authored) to IEEE ITSC 2026
+- **Jan 2026** — Submitted [CWD-SWGD-IDS](research.md) (co-authored) to IEEE ITSC 2026
 - **Jun 2025** — Released [multi-stage KD-GAT preprint](research.md)
 - **May 2025** — [KD-GAT](research/kd-gat.md) accepted to IEEE ITSC 2025
 

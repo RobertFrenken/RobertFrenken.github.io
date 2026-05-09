@@ -16,8 +16,4 @@ The Controller Area Network (CAN) protocol is widely adopted for in-vehicle comm
 
 ## Architecture
 
-:::{figure} ../images/Graph-example.png
-:label: fig-kd-gat-arch
-:alt: KD-GAT Architecture
-KD-GAT Architecture
-:::
+![KD-GAT Architecture](../images/Graph-example.png){#fig-kd-gat-arch fig-alt="KD-GAT Architecture"}
