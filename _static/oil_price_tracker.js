@@ -17,7 +17,12 @@
     const popupContent = shell.querySelector("[data-oil-popup-content]");
     const closeButton = shell.querySelector("[data-oil-close]");
 
-    if (!specEl || !configEl || !chartEl || !windowSelect || !tagSelect || !clearButton || !status || !backdrop || !popup || !popupContent || !closeButton || typeof vegaEmbed === "undefined") {
+    if (!specEl || !configEl || !chartEl || !windowSelect || !tagSelect || !clearButton || !status || !backdrop || !popup || !popupContent || !closeButton) {
+      return;
+    }
+
+    if (typeof vegaEmbed === "undefined") {
+      window.setTimeout(initOilTracker, 50);
       return;
     }
 

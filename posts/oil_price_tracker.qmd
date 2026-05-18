@@ -20,8 +20,6 @@ execute:
 jupyter: python3
 ---
 
-::: {.oil-price-tracker-page}
-
 <div class="oil-hero">
 <div class="oil-hero-kicker">Oil market notebook</div>
 <h2>Oil Price Tracker</h2>
@@ -360,5 +358,3 @@ date,description,countries,tags,source
 2026-04-16,"U.S. officials signaled the military was ready to strike Iran's energy infrastructure if ordered.","United States / Iran","US-Iran;Middle East;war;Hormuz",https://www.investing.com/news/commodities-news/us-forces-ready-to-restart-combat-if-iran-doesnt-agree-a-deal-says-hegseth-4618091
 2026-04-20,"Oil jumped as ceasefire hopes faded and violence around the Strait of Hormuz flared again.","United States / Iran / Middle East","US-Iran;Middle East;war;Hormuz",https://ca.investing.com/news/commodities-news/oil-prices-rebound-7-as-strait-of-hormuz-is-closed-again-4572835
 ```
-
-:::
