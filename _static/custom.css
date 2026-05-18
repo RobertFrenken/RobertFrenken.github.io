@@ -1,5 +1,5 @@
 /* --- Font (must be first) --- */
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300..900;1,300..900&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap");
 
 /* ==========================================================
    Robert Frenken — Quarto theme overrides (cosmo / darkly)
@@ -109,3 +109,350 @@ img.rounded-image {
 .profile-links a:hover { color: var(--scarlet); }
 .quarto-dark .profile-links a { color: #e5e5e5; }
 .quarto-dark .profile-links a:hover { color: var(--scarlet-light); }
+
+/* --- Oil Price Tracker: scoped editorial theme --- */
+.oil-price-tracker-page {
+  --oil-ink: #211910;
+  --oil-muted: #6a5d50;
+  --oil-paper: #fff9f1;
+  --oil-surface: rgba(255, 255, 255, 0.76);
+  --oil-surface-strong: rgba(255, 255, 255, 0.94);
+  --oil-line: rgba(33, 25, 16, 0.12);
+  --oil-accent: #b45309;
+  --oil-accent-2: #24545a;
+  --oil-accent-3: #7c2d12;
+  --oil-accent-soft: rgba(180, 83, 9, 0.12);
+  position: relative;
+  padding: clamp(1rem, 2.2vw, 2rem);
+  margin: 0.5rem 0 1.75rem;
+  border: 1px solid rgba(33, 25, 16, 0.08);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(180, 83, 9, 0.16), transparent 30%),
+    radial-gradient(circle at top right, rgba(36, 84, 90, 0.12), transparent 28%),
+    linear-gradient(180deg, #fffaf4 0%, #f7efe4 56%, #f1e7d9 100%);
+  box-shadow: 0 26px 80px rgba(33, 25, 16, 0.10);
+  color: var(--oil-ink);
+}
+
+.oil-price-tracker-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 0, transparent 24px, rgba(33, 25, 16, 0.03) 25px, transparent 26px),
+    linear-gradient(180deg, transparent 0, transparent 24px, rgba(33, 25, 16, 0.03) 25px, transparent 26px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 65%);
+  opacity: 0.65;
+}
+
+.oil-price-tracker-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.oil-price-tracker-page .oil-hero {
+  margin: 0 0 1.5rem;
+  padding: 1.1rem 1.15rem 1.2rem;
+  border-radius: 22px;
+  border: 1px solid rgba(33, 25, 16, 0.10);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.90), rgba(247, 235, 215, 0.82));
+  box-shadow: 0 14px 28px rgba(33, 25, 16, 0.07);
+}
+
+.oil-price-tracker-page .oil-hero-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--oil-accent-2);
+  font-weight: 700;
+  margin-bottom: 0.45rem;
+}
+
+.oil-price-tracker-page .oil-hero h2 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+  font-size: clamp(1.65rem, 3vw, 2.45rem);
+  line-height: 1.02;
+  margin: 0 0 0.45rem;
+  border: 0;
+  padding: 0;
+}
+
+.oil-price-tracker-page .oil-hero p {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--oil-muted);
+  font-size: 1.02rem;
+}
+
+.oil-price-tracker-page h2,
+.oil-price-tracker-page h3,
+.oil-price-tracker-page h4 {
+  font-family: "IBM Plex Serif", Georgia, serif;
+  color: var(--oil-ink);
+}
+
+.oil-price-tracker-page h2 {
+  border-bottom-color: rgba(180, 83, 9, 0.75);
+}
+
+.oil-price-tracker-page p,
+.oil-price-tracker-page li,
+.oil-price-tracker-page td,
+.oil-price-tracker-page th {
+  color: var(--oil-ink);
+}
+
+.oil-price-tracker-page a {
+  color: var(--oil-accent);
+}
+
+.oil-price-tracker-page a:hover {
+  color: var(--oil-accent-3);
+}
+
+.oil-price-tracker-page pre,
+.oil-price-tracker-page code {
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(33, 25, 16, 0.08);
+}
+
+.oil-price-tracker-page table {
+  background: rgba(255, 255, 255, 0.60);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.oil-price-tracker-page .oil-tracker-shell {
+  margin: 1.25rem 0 1.5rem;
+  padding: 1rem;
+  border-radius: 24px;
+  border: 1px solid rgba(33, 25, 16, 0.10);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(249, 240, 229, 0.86));
+  box-shadow: 0 20px 42px rgba(33, 25, 16, 0.09);
+}
+
+.oil-price-tracker-page .oil-tracker-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: end;
+  margin: 0 0 14px;
+  padding: 14px;
+  border: 1px solid rgba(33, 25, 16, 0.10);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(247, 237, 221, 0.96));
+}
+
+.oil-price-tracker-page .oil-tracker-field {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--oil-ink);
+}
+
+.oil-price-tracker-page .oil-tracker-select {
+  min-width: 190px;
+  padding: 8px 10px;
+  border: 1px solid rgba(33, 25, 16, 0.16);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--oil-ink);
+}
+
+.oil-price-tracker-page .oil-tracker-tag-select {
+  min-width: 250px;
+}
+
+.oil-price-tracker-page .oil-tracker-btn {
+  padding: 8px 12px;
+  border: 1px solid rgba(33, 25, 16, 0.14);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 236, 223, 0.96));
+  color: var(--oil-ink);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 700;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease, color 0.14s ease, border-color 0.14s ease;
+}
+
+.oil-price-tracker-page .oil-tracker-btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(180, 83, 9, 0.5);
+  box-shadow: 0 10px 20px rgba(33, 25, 16, 0.08);
+}
+
+.oil-price-tracker-page .oil-tracker-btn:focus-visible {
+  outline: 3px solid rgba(180, 83, 9, 0.28);
+  outline-offset: 2px;
+}
+
+.oil-price-tracker-page .oil-tracker-status {
+  margin-left: auto;
+  align-self: center;
+  font-size: 13px;
+  color: var(--oil-muted);
+}
+
+.oil-price-tracker-page .oil-tracker-chart {
+  min-height: 520px;
+}
+
+.oil-price-tracker-page .oil-tracker-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(24, 18, 12, 0.28);
+  backdrop-filter: blur(3px);
+}
+
+.oil-price-tracker-page .oil-tracker-popup {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  width: min(410px, calc(100vw - 24px));
+  background: rgba(255, 250, 241, 0.97);
+  border: 1px solid rgba(33, 25, 16, 0.12);
+  box-shadow: 0 18px 42px rgba(33, 25, 16, 0.18);
+  border-radius: 18px;
+  padding: 14px 16px 16px;
+  color: var(--oil-ink);
+}
+
+.oil-price-tracker-page .oil-tracker-popup-close {
+  float: right;
+  border: 0;
+  background: transparent;
+  font-size: 22px;
+  line-height: 22px;
+  cursor: pointer;
+  color: var(--oil-muted);
+}
+
+.oil-price-tracker-page .oil-tracker-popup-content {
+  padding-right: 20px;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-topline {
+  font-size: 12px;
+  color: var(--oil-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-title {
+  font-weight: 800;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-text {
+  margin-bottom: 6px;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-meta-grid {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.4rem;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  font-size: 13px;
+  color: var(--oil-muted);
+  padding: 0.45rem 0.6rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.oil-price-tracker-page .oil-tracker-popup-meta strong {
+  color: var(--oil-ink);
+  font-weight: 700;
+  text-align: right;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-meta span {
+  min-width: 7.5rem;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-tags {
+  margin: 0.3rem 0 0.25rem;
+  padding: 0.55rem 0.65rem 0.6rem;
+  border-radius: 14px;
+  border: 1px solid rgba(33, 25, 16, 0.10);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.oil-price-tracker-page .oil-tracker-popup-tags-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--oil-accent-2);
+  margin-bottom: 0.45rem;
+}
+
+.oil-price-tracker-page .oil-tracker-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.oil-price-tracker-page .oil-tracker-tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(180, 83, 9, 0.18);
+  background: rgba(180, 83, 9, 0.10);
+  color: var(--oil-ink);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.oil-price-tracker-page .oil-tracker-tag-chip-empty {
+  background: rgba(36, 84, 90, 0.09);
+  border-color: rgba(36, 84, 90, 0.18);
+}
+
+.oil-price-tracker-page .oil-tracker-popup-link {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.oil-price-tracker-page .oil-tracker-popup-link a {
+  color: var(--oil-accent);
+}
+
+.oil-price-tracker-page .oil-tracker-popup-link a:hover {
+  color: var(--oil-accent-3);
+}
+
+@media (max-width: 720px) {
+  .oil-price-tracker-page {
+    padding: 0.85rem;
+    border-radius: 22px;
+  }
+
+  .oil-price-tracker-page .oil-tracker-controls {
+    padding: 12px;
+  }
+
+  .oil-price-tracker-page .oil-tracker-select,
+  .oil-price-tracker-page .oil-tracker-tag-select {
+    min-width: 100%;
+  }
+
+  .oil-price-tracker-page .oil-tracker-status {
+    margin-left: 0;
+    width: 100%;
+  }
+}

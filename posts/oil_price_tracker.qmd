@@ -2,6 +2,13 @@
 title: "Oil Price Tracker: Pairing Daily Prices with Market-Moving Events"
 author: "Robert Frenken"
 date: today
+keywords:
+  - exploratory data analysis
+  - data visualization
+  - data wrangling
+  - data integration
+  - time series analysis
+  - interactive visualization
 format:
   html:
     toc: true
@@ -13,9 +20,17 @@ execute:
 jupyter: python3
 ---
 
+::: {.oil-price-tracker-page}
+
+<div class="oil-hero">
+<div class="oil-hero-kicker">Oil market notebook</div>
+<h2>Oil Price Tracker</h2>
+<p>Brush the price history with Altair-native linked selections, then inspect market-moving events against a long-running benchmark that now reaches back to 1946.</p>
+</div>
+
 ## Objective
 
-This post builds a simple oil-price tracker that joins daily benchmark prices with a curated event table. The chart shows price history as a line and marks important events on top of it. The top panel gives context over the full history; the bottom panel focuses on recent events and lets you click to highlight one.
+This post builds a simple oil-price tracker that joins benchmark prices with a curated event table. The chart shows price history as a line and marks important events on top of it. The top panel gives context over the full history; the bottom panel starts in the mid-1970s and can be zoomed with the built-in Altair brush.
 
 The implementation uses:
 
@@ -39,7 +54,7 @@ The CSV endpoint pattern is:
 https://fred.stlouisfed.org/graph/fredgraph.csv?id=<SERIES_ID>
 ```
 
-This example defaults to Brent, which is the global benchmark. You can switch to WTI if you want a U.S.-centric benchmark.
+This example defaults to FRED's spliced WTI series, which extends the monthly history back to 1946. If you want a modern-only daily series, you can switch to Brent or daily WTI.
 
 ### Event-data structure
 
@@ -59,8 +74,11 @@ In this post, the table lives in `events.csv` so the workflow stays reproducible
 
 ```{python}
 #| label: imports
+import html as html_lib
+import json
 import pandas as pd
 import altair as alt
+from IPython.display import HTML, display
 
 alt.data_transformers.disable_max_rows()
 ```
@@ -73,24 +91,28 @@ The post only needs:
 pip install pandas altair ipython
 ```
 
-No custom JavaScript is needed for this version.
+The interactive shell below uses a small custom JavaScript helper for the popup and window/tag controls. The brush itself is native Altair.
 
-## Load daily oil prices
+## Load benchmark prices
 
 ```{python}
 #| label: load-prices
 BENCHMARKS = {
-    "Brent": {
+    "WTI monthly (spliced)": {
+        "series_id": "WTISPLC",
+        "price_label": "Spliced WTI spot price",
+    },
+    "Brent daily": {
         "series_id": "DCOILBRENTEU",
         "price_label": "Brent crude spot price",
     },
-    "WTI": {
+    "WTI daily": {
         "series_id": "DCOILWTICO",
         "price_label": "WTI Cushing crude spot price",
     },
 }
 
-BENCHMARK = "Brent"  # Switch to "WTI" to plot the U.S. benchmark.
+BENCHMARK = "WTI monthly (spliced)"  # Switch to a daily series if you only want the modern period.
 SERIES_ID = BENCHMARKS[BENCHMARK]["series_id"]
 PRICE_LABEL = BENCHMARKS[BENCHMARK]["price_label"]
 
@@ -167,14 +189,23 @@ events_joined = events_joined.drop(columns=["price_date"])
 
 ## Build the Altair chart
 
-Altair handles the line, event points, hover tooltip, and click selection. The top chart shows the full history, and the bottom chart focuses on recent events.
+Altair handles the line, event points, hover tooltip, click selection, and an interval brush that filters the detail view.
 
 ```{python}
 #| label: altair-spec
-START_DATE = "2019-01-01"
+START_DATE = "1974-01-01"
 prices_recent = prices[prices["date"] >= START_DATE].copy()
 events_recent = events_joined[events_joined["date"] >= START_DATE].copy()
+tag_options = sorted(
+    {
+        tag.strip()
+        for value in events["tags"].fillna("")
+        for tag in str(value).split(";")
+        if tag.strip()
+    }
+)
 
+brush = alt.selection_interval(encodings=["x"], clear="dblclick")
 click = alt.selection_point(
     fields=["event_date", "description"],
     on="click",
@@ -184,10 +215,15 @@ click = alt.selection_point(
 
 overview = alt.layer(
     alt.Chart(prices).mark_line(color="#1f4e79").encode(
-        x=alt.X("date:T", title="Date"),
+        x=alt.X(
+            "date:T",
+            title="Date",
+            scale=alt.Scale(type="utc"),
+            axis=alt.Axis(format="%Y", formatType="utc"),
+        ),
         y=alt.Y("price_usd_per_barrel:Q", title="USD per barrel"),
         tooltip=[
-            alt.Tooltip("date:T", title="Date"),
+            alt.Tooltip("date:T", title="Date", format="%Y-%m-%d", formatType="utc"),
             alt.Tooltip("price_usd_per_barrel:Q", title="Price", format="$.2f"),
         ],
     ),
@@ -198,10 +234,10 @@ overview = alt.layer(
         stroke="white",
         strokeWidth=0.75,
     ).encode(
-        x="date:T",
+        x=alt.X("date:T", scale=alt.Scale(type="utc")),
         y="price_usd_per_barrel:Q",
         tooltip=[
-            alt.Tooltip("event_date:T", title="Event date"),
+            alt.Tooltip("event_date:T", title="Event date", format="%Y-%m-%d", formatType="utc"),
             alt.Tooltip("price_usd_per_barrel:Q", title="Price", format="$.2f"),
             alt.Tooltip("countries:N", title="Country/countries"),
             alt.Tooltip("tags:N", title="Tags"),
@@ -212,14 +248,19 @@ overview = alt.layer(
     title=f"{PRICE_LABEL} with market-moving events",
     width="container",
     height=260,
-)
+).add_params(brush)
 
 detail = alt.layer(
     alt.Chart(prices_recent).mark_line(color="#1f4e79").encode(
-        x=alt.X("date:T", title="Date"),
+        x=alt.X(
+            "date:T",
+            title="Date",
+            scale=alt.Scale(type="utc"),
+            axis=alt.Axis(format="%Y-%m", formatType="utc"),
+        ),
         y=alt.Y("price_usd_per_barrel:Q", title="USD per barrel"),
         tooltip=[
-            alt.Tooltip("date:T", title="Date"),
+            alt.Tooltip("date:T", title="Date", format="%Y-%m-%d", formatType="utc"),
             alt.Tooltip("price_usd_per_barrel:Q", title="Price", format="$.2f"),
         ],
     ),
@@ -230,14 +271,14 @@ detail = alt.layer(
         stroke="white",
         strokeWidth=0.75,
     ).encode(
-        x="date:T",
+        x=alt.X("date:T", scale=alt.Scale(type="utc")),
         y="price_usd_per_barrel:Q",
         opacity=alt.value(0.9),
         color=alt.condition(click, alt.value("#c1121f"), alt.value("#8a8a8a")),
         size=alt.condition(click, alt.value(130), alt.value(85)),
         tooltip=[
-            alt.Tooltip("event_date:T", title="Event date"),
-            alt.Tooltip("date:T", title="Matched price date"),
+            alt.Tooltip("event_date:T", title="Event date", format="%Y-%m-%d", formatType="utc"),
+            alt.Tooltip("date:T", title="Matched price date", format="%Y-%m-%d", formatType="utc"),
             alt.Tooltip("price_usd_per_barrel:Q", title="Price", format="$.2f"),
             alt.Tooltip("countries:N", title="Country/countries"),
             alt.Tooltip("tags:N", title="Tags"),
@@ -245,23 +286,69 @@ detail = alt.layer(
         ],
     ).add_params(click),
 ).properties(
-    title="Recent detail: click an event dot to highlight it, double-click to clear",
+    title="Drag a brush in the top panel to zoom the detail view; click an event dot to highlight it",
     width="container",
     height=320,
-)
+).transform_filter(brush)
 
 chart = alt.vconcat(overview, detail).resolve_scale(y="shared").configure_axis(grid=True).configure_view(strokeWidth=0)
-chart
+base_spec_json = json.dumps(chart.to_dict(), ensure_ascii=False).replace("</", "<\\/")
+config_json = json.dumps(
+    {
+        "defaultWindow": "recent",
+        "tagOptions": tag_options,
+    },
+    ensure_ascii=False,
+)
+
+html = f"""
+<div class="oil-tracker-shell" data-oil-tracker-shell>
+  <div class="oil-tracker-controls">
+    <label class="oil-tracker-field">
+      Time window
+      <select class="oil-tracker-select" data-oil-window>
+        <option value="recent">Mid-1970s onward</option>
+        <option value="full">Full history</option>
+        <option value="iran80s">1980s Gulf conflicts</option>
+        <option value="midEast2020s">2020s Middle East conflicts</option>
+      </select>
+    </label>
+    <label class="oil-tracker-field">
+      Tags
+      <select class="oil-tracker-select oil-tracker-tag-select" data-oil-tags multiple size="6">
+        {"".join(f'<option value="{html_lib.escape(tag, quote=True)}">{html_lib.escape(tag, quote=True)}</option>' for tag in tag_options)}
+      </select>
+    </label>
+    <button class="oil-tracker-btn" type="button" data-oil-clear>Clear tags</button>
+    <div class="oil-tracker-status" data-oil-status></div>
+  </div>
+  <div class="oil-tracker-chart" data-oil-chart></div>
+  <div class="oil-tracker-backdrop" data-oil-backdrop></div>
+  <div class="oil-tracker-popup" role="dialog" aria-modal="true" aria-live="polite" aria-label="Oil market event details" data-oil-popup>
+    <button class="oil-tracker-popup-close" aria-label="Close event popup" data-oil-close>&times;</button>
+    <div class="oil-tracker-popup-content" data-oil-popup-content></div>
+  </div>
+  <script id="oil-tracker-spec" type="application/json">{base_spec_json}</script>
+  <script id="oil-tracker-config" type="application/json">{config_json}</script>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@5.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+<script src="../_static/oil_price_tracker.js"></script>
+"""
+display(HTML(html))
 ```
 
 ## Notes on front-end lifecycle
 
-The chart relies on built-in Altair interactions only:
+The chart relies on built-in Altair interactions plus a small shell that owns the popup:
 
 1. Hover shows the event tooltip.
-2. Click locks a highlighted event in the recent-detail panel.
-3. Double-click clears the selection.
-4. The top panel keeps the long history visible while the lower panel focuses on the recent window.
+2. Drag across the top panel to create the brush window.
+3. Double-click the top panel to clear the brush.
+4. Clear tags removes event filtering but leaves the window alone.
+5. Click an event dot to pin the highlight in the detail panel.
+6. The lower panel starts in the mid-1970s and then follows the active brush.
 
 ## Reusable event CSV template
 
@@ -269,4 +356,9 @@ The chart relies on built-in Altair interactions only:
 date,description,countries,tags,source
 2022-02-24,"Russia launched its full-scale invasion of Ukraine; oil prices jumped on supply-risk concerns.","Russia / Ukraine / Global","Russia-Ukraine;war;sanctions",https://www.reuters.com/business/energy/oil-rises-us-says-russian-attack-ukraine-may-occur-soon-2022-02-24/
 2023-04-02,"OPEC+ producers announced surprise voluntary output cuts of about 1.16 million barrels per day.","Saudi Arabia / OPEC+","OPEC+;supply",https://www.reuters.com/business/energy/sarabia-other-opec-producers-announce-voluntary-oil-output-cuts-2023-04-02/
+2026-02-28,"U.S. and Israeli strikes on Iran escalated the conflict and tightened oil supply expectations.","United States / Iran / Israel / Middle East","US-Iran;Middle East;war;Hormuz",https://www.brecorder.com/news/40415137/oil-prices-rise-as-hormuz-stays-shut-ahead-of-trump-deadline-strikes-on-iran-intensify
+2026-04-16,"U.S. officials signaled the military was ready to strike Iran's energy infrastructure if ordered.","United States / Iran","US-Iran;Middle East;war;Hormuz",https://www.investing.com/news/commodities-news/us-forces-ready-to-restart-combat-if-iran-doesnt-agree-a-deal-says-hegseth-4618091
+2026-04-20,"Oil jumped as ceasefire hopes faded and violence around the Strait of Hormuz flared again.","United States / Iran / Middle East","US-Iran;Middle East;war;Hormuz",https://ca.investing.com/news/commodities-news/oil-prices-rebound-7-as-strait-of-hormuz-is-closed-again-4572835
 ```
+
+:::
