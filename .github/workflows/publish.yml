@@ -30,6 +30,11 @@ jobs:
       - name: Install Typst
         uses: typst-community/setup-typst@v4
 
+      - name: Install Python packages
+        run: |
+          python3 -m pip install --user --upgrade pip
+          python3 -m pip install --user pandas altair ipython jupyter nbformat
+
       - name: Build site
         run: |
           typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf
