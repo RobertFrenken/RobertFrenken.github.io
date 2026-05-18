@@ -19,6 +19,7 @@ Personal academic website built with Quarto.
 | `index.md` | Homepage |
 | `research.md` | Research listing |
 | `posts.md` | Blog posts listing (manual, pending listing page conversion) |
+| `posts/` | Blog post sources and post-local data/assets |
 | `_static/custom.css` | Custom styles (scarlet accent, Source Sans 3) |
 
 ## CV Workflow
@@ -89,6 +90,9 @@ typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf && quarto render
 - `_quarto.yml` allowlist: `*.md`, `*.qmd`, `!CLAUDE.md` — keeps project instructions out of the rendered site
 - Resources copied as-is: `Frenken_Robert_CV.pdf`, `files/**` (PDFs), images via `images/`
 - Theme: `light: cosmo, dark: darkly` — Bootstrap 5 base, dark-mode toggle built in
+- Blog posts live under `posts/` as standalone `.qmd` or `.md` files
+- Keep post-specific data files next to the post source when practical, using the same slug prefix
+- Blog listing is still manual; add new post links to `posts.md`
 
 ### Known Gaps
 - Blog listing is manual (no Quarto listing page yet — `posts.md` is hand-written)
