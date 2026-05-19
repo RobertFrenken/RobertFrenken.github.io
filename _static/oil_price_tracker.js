@@ -7,6 +7,7 @@
 
     const specEl = shell.querySelector("#oil-tracker-spec");
     const configEl = shell.querySelector("#oil-tracker-config");
+    const markersEl = shell.querySelector("#oil-tracker-markers");
     const chartEl = shell.querySelector("[data-oil-chart]");
     const windowSelect = shell.querySelector("[data-oil-window]");
     const tagSelect = shell.querySelector("[data-oil-tags]");
@@ -17,7 +18,7 @@
     const popupContent = shell.querySelector("[data-oil-popup-content]");
     const closeButton = shell.querySelector("[data-oil-close]");
 
-    if (!specEl || !configEl || !chartEl || !windowSelect || !tagSelect || !clearButton || !status || !backdrop || !popup || !popupContent || !closeButton) {
+    if (!specEl || !configEl || !markersEl || !chartEl || !windowSelect || !tagSelect || !clearButton || !status || !backdrop || !popup || !popupContent || !closeButton) {
       return;
     }
 
@@ -28,6 +29,7 @@
 
     const baseSpec = JSON.parse(specEl.textContent);
     const config = JSON.parse(configEl.textContent);
+    const markerRows = JSON.parse(markersEl.textContent);
 
     const windowMap = {
       recent: { label: "Mid-1970s onward", start: "1974-01-01", end: null },
@@ -86,6 +88,56 @@
       popup.style.display = "none";
       backdrop.style.display = "none";
       popupContent.innerHTML = "";
+    }
+
+    function removeMarkerLayer() {
+      const existing = chartEl.querySelector(".oil-tracker-marker-layer");
+      if (existing) {
+        existing.remove();
+      }
+    }
+
+    function createMarkerLayer(className) {
+      const layer = document.createElement("div");
+      layer.className = `oil-tracker-marker-layer ${className}`;
+      return layer;
+    }
+
+    function addMarker(layer, view, row, xScale, yScale, sizeClass) {
+      const x = view.scale(xScale, parseDateOnly(row.date));
+      const y = view.scale(yScale, Number(row.price_usd_per_barrel));
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        return;
+      }
+
+      const marker = document.createElement("button");
+      marker.type = "button";
+      marker.className = `oil-tracker-event-dot ${sizeClass}`;
+      marker.style.left = `${x}px`;
+      marker.style.top = `${y}px`;
+      marker.title = row.description;
+      marker.setAttribute("aria-label", row.description);
+      marker.addEventListener("click", (event) => {
+        openPopup(row, event.clientX, event.clientY);
+      });
+      layer.appendChild(marker);
+    }
+
+    function renderMarkers(view) {
+      removeMarkerLayer();
+
+      const layer = createMarkerLayer("");
+      const overviewLayer = createMarkerLayer("oil-tracker-marker-layer-overview");
+      const detailLayer = createMarkerLayer("oil-tracker-marker-layer-detail");
+
+      for (const row of markerRows) {
+        addMarker(overviewLayer, view, row, "concat_0_x", "concat_0_y", "oil-tracker-event-dot-overview");
+        addMarker(detailLayer, view, row, "concat_1_x", "concat_1_y", "oil-tracker-event-dot-detail");
+      }
+
+      layer.appendChild(overviewLayer);
+      layer.appendChild(detailLayer);
+      chartEl.appendChild(layer);
     }
 
     function getSelectedTags() {
@@ -226,13 +278,9 @@
         actions: false,
         renderer: "canvas",
       }).then((result) => {
-        result.view.addEventListener("click", function (event, item) {
-          const datum = item && item.datum;
-          if (datum && datum.description) {
-            openPopup(datum, event.clientX, event.clientY);
-          } else {
-            closePopup();
-          }
+        renderMarkers(result.view);
+        result.view.addSignalListener("brush", () => {
+          renderMarkers(result.view);
         });
       });
     }

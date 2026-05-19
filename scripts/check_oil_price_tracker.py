@@ -27,9 +27,8 @@ def main() -> int:
         rendered = HTML.read_text(encoding="utf-8", errors="replace")
         assert_contains(rendered, 'id="quarto-sidebar"', "sidebar markup missing from rendered HTML")
         assert_contains(rendered, 'id="TOC"', "TOC markup missing from rendered HTML")
-        assert_contains(rendered, 'data-oil-tracker-shell', "oil tracker shell missing from rendered HTML")
-        assert_contains(rendered, '../_static/oil_price_tracker.js', "oil tracker helper script missing from rendered HTML")
-        assert_contains(rendered, 'https://cdn.jsdelivr.net/npm/vega-embed@6', "vega-embed script tag missing from rendered HTML")
+        assert_contains(rendered, 'src="../_static/oil_price_tracker_widget.html"', "oil tracker iframe missing from rendered HTML")
+        assert_contains(rendered, 'oil_price_tracker_widget.html', "oil tracker widget reference missing from rendered HTML")
     except AssertionError as exc:
         return fail(str(exc))
 
