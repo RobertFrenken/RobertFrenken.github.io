@@ -80,6 +80,7 @@ def main() -> int:
     events_joined["days_from_price_date"] = (
         events_joined["event_date"] - events_joined["price_date"]
     ).dt.days.abs()
+    events_joined["days_from_price_date"] = events_joined["days_from_price_date"].astype("Int64")
     events_joined["event"] = True
     events_joined["date"] = events_joined["price_date"]
     events_joined = events_joined.drop(columns=["price_date"])
@@ -146,7 +147,7 @@ def main() -> int:
             x=alt.X(
                 "date:T",
                 title="Date",
-                scale=alt.Scale(type="utc"),
+                scale=alt.Scale(type="utc", domain=brush),
                 axis=alt.Axis(format="%Y-%m", formatType="utc"),
             ),
             y=alt.Y("price_usd_per_barrel:Q", title="USD per barrel"),
@@ -171,7 +172,7 @@ def main() -> int:
         title="Drag a brush in the top panel to zoom the detail view",
         width=700,
         height=320,
-    ).transform_filter(brush)
+    )
 
     chart = (
         alt.vconcat(overview, detail)

@@ -68,6 +68,15 @@
     }
 
     function formatDateOnly(value) {
+      if (value instanceof Date && !Number.isNaN(value.valueOf())) {
+        return new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "2-digit",
+          timeZone: "UTC",
+        }).format(value);
+      }
+
       const date = parseDateOnly(value);
       if (!date) {
         return "Unknown date";
@@ -168,15 +177,17 @@
     function openPopup(datum, x, y) {
       const eventDate = formatDateOnly(datum.event_date);
       const priceDate = formatDateOnly(datum.date);
-      const price = datum.price_usd_per_barrel !== undefined
-        ? Number(datum.price_usd_per_barrel).toLocaleString(undefined, {
+      const priceValue = Number(datum.price_usd_per_barrel);
+      const price = Number.isFinite(priceValue)
+        ? priceValue.toLocaleString(undefined, {
           style: "currency",
           currency: "USD",
           maximumFractionDigits: 2,
         }) + " / bbl"
         : "No price attached";
-      const gapText = Number.isFinite(Number(datum.days_from_price_date))
-        ? `${escapeHtml(datum.days_from_price_date)} day${Number(datum.days_from_price_date) === 1 ? "" : "s"} from price date`
+      const gapValue = Number(datum.days_from_price_date);
+      const gapText = Number.isFinite(gapValue)
+        ? `${escapeHtml(gapValue)} day${gapValue === 1 ? "" : "s"} from price date`
         : "Matched to nearest price date";
       const tags = String(datum.tags ?? "")
         .split(";")

@@ -5,6 +5,9 @@ import shutil
 import subprocess
 import sys
 import time
+import json
+import re
+import math
 from pathlib import Path
 
 
@@ -24,6 +27,27 @@ def fail(message: str) -> int:
 def assert_contains(text: str, needle: str, message: str) -> None:
     if needle not in text:
         raise AssertionError(message)
+
+
+def parse_widget_spec(widget_html: str) -> dict:
+    match = re.search(
+        r'<script id="oil-tracker-spec" type="application/json">(.*?)</script>',
+        widget_html,
+        re.DOTALL,
+    )
+    if not match:
+        raise AssertionError("oil tracker spec JSON missing from widget")
+    return json.loads(match.group(1))
+
+
+def contains_nan(value) -> bool:
+    if isinstance(value, float):
+        return math.isnan(value)
+    if isinstance(value, list):
+        return any(contains_nan(item) for item in value)
+    if isinstance(value, dict):
+        return any(contains_nan(item) for item in value.values())
+    return False
 
 
 def run_browser_check() -> str:
@@ -81,6 +105,13 @@ def main() -> int:
         assert_contains(rendered, 'id="quarto-sidebar"', "sidebar markup missing from rendered HTML")
         assert_contains(rendered, 'id="TOC"', "TOC markup missing from rendered HTML")
         assert_contains(rendered, 'src="../_static/oil_price_tracker_widget.html"', "oil tracker iframe missing from rendered HTML")
+        widget = WIDGET.read_text(encoding="utf-8", errors="replace")
+        spec = parse_widget_spec(widget)
+        if contains_nan(spec):
+            raise AssertionError("widget spec contains NaN values")
+        detail_x = spec["vconcat"][1]["layer"][0]["encoding"]["x"]
+        if detail_x.get("scale", {}).get("domain", {}).get("param") != "param_1":
+            raise AssertionError("brush is not bound to the detail x-domain")
         browser_dom = run_browser_check()
         assert_contains(browser_dom, 'data-oil-tracker-shell', "oil tracker shell missing from browser-rendered widget")
         assert_contains(browser_dom, 'class="marks"', "Vega canvas missing from browser-rendered widget")
