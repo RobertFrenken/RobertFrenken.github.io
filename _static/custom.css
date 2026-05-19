@@ -238,44 +238,7 @@ img.rounded-image {
 }
 
 .oil-tracker-chart {
-  position: relative;
   min-height: 520px;
-}
-
-.oil-tracker-marker-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.oil-tracker-event-dot {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  padding: 0;
-  border: 2px solid rgba(255, 255, 255, 0.96);
-  border-radius: 999px;
-  background: #c1121f;
-  box-shadow: 0 3px 10px rgba(33, 25, 16, 0.18);
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-.oil-tracker-event-dot:hover {
-  transform: translate(-50%, -50%) scale(1.14);
-}
-
-.oil-tracker-event-dot-overview {
-  width: 9px;
-  height: 9px;
-  opacity: 0.84;
-}
-
-.oil-tracker-event-dot-detail {
-  width: 11px;
-  height: 11px;
 }
 
 .oil-tracker-backdrop {
