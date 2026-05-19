@@ -191,8 +191,9 @@ The interactive chart now lives in a standalone widget so Quarto only embeds it 
 
 <iframe
   src="../_static/oil_price_tracker_widget.html"
+  title="Oil Price Tracker widget"
   style="width: 100%; min-height: 1120px; border: 0; overflow: hidden;"
-  loading="lazy"
+  loading="eager"
 ></iframe>
 
 ## Notes on front-end lifecycle
