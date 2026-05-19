@@ -10,6 +10,10 @@
     const chartEl = shell.querySelector("[data-oil-chart]");
     const windowSelect = shell.querySelector("[data-oil-window]");
     const tagSelect = shell.querySelector("[data-oil-tags]");
+    const startYearInput = shell.querySelector("[data-oil-start-year]");
+    const endYearInput = shell.querySelector("[data-oil-end-year]");
+    const startYearLabel = shell.querySelector("[data-oil-start-label]");
+    const endYearLabel = shell.querySelector("[data-oil-end-label]");
     const clearButton = shell.querySelector("[data-oil-clear]");
     const status = shell.querySelector("[data-oil-status]");
     const backdrop = shell.querySelector("[data-oil-backdrop]");
@@ -17,7 +21,7 @@
     const popupContent = shell.querySelector("[data-oil-popup-content]");
     const closeButton = shell.querySelector("[data-oil-close]");
 
-    if (!specEl || !configEl || !chartEl || !windowSelect || !tagSelect || !clearButton || !status || !backdrop || !popup || !popupContent || !closeButton) {
+    if (!specEl || !configEl || !chartEl || !windowSelect || !tagSelect || !startYearInput || !endYearInput || !startYearLabel || !endYearLabel || !clearButton || !status || !backdrop || !popup || !popupContent || !closeButton) {
       return;
     }
 
@@ -28,6 +32,16 @@
 
     const baseSpec = JSON.parse(specEl.textContent);
     const config = JSON.parse(configEl.textContent);
+    const minYear = Number(config.minYear || 1946);
+    const maxYear = Number(config.maxYear || new Date().getUTCFullYear());
+    const defaultStartYear = Number(config.defaultStartYear || 1974);
+    const defaultEndYear = Number(config.defaultEndYear || maxYear);
+    startYearInput.min = String(minYear);
+    startYearInput.max = String(maxYear);
+    endYearInput.min = String(minYear);
+    endYearInput.max = String(maxYear);
+    startYearInput.value = String(Math.min(Math.max(defaultStartYear, minYear), maxYear));
+    endYearInput.value = String(Math.min(Math.max(defaultEndYear, minYear), maxYear));
     const windowMap = {
       recent: { label: "Mid-1970s onward", start: "1974-01-01", end: null },
       full: { label: "Full history", start: null, end: null },
@@ -102,6 +116,24 @@
         .filter(Boolean);
     }
 
+    function getYearBounds() {
+      let startYear = Number(startYearInput.value);
+      let endYear = Number(endYearInput.value);
+      if (startYear > endYear) {
+        [startYear, endYear] = [endYear, startYear];
+      }
+      return { startYear, endYear };
+    }
+
+    function syncYearLabels() {
+      const { startYear, endYear } = getYearBounds();
+      startYearLabel.textContent = `(${startYear})`;
+      endYearLabel.textContent = `(${endYear})`;
+      if (Number(startYearInput.value) > Number(endYearInput.value)) {
+        startYearInput.value = String(endYear);
+      }
+    }
+
     function inWindow(row, windowConfig) {
       if (!windowConfig.start && !windowConfig.end) {
         return true;
@@ -148,9 +180,19 @@
       const spec = JSON.parse(JSON.stringify(baseSpec));
       const selectedTags = getSelectedTags();
       const windowConfig = windowMap[windowSelect.value] || windowMap.recent;
+      const { startYear, endYear } = getYearBounds();
+      const startBound = new Date(Date.UTC(startYear, 0, 1));
+      const endBound = new Date(Date.UTC(endYear, 11, 31, 23, 59, 59, 999));
 
       for (const datasetName of Object.keys(spec.datasets || {})) {
         spec.datasets[datasetName] = spec.datasets[datasetName].filter((row) => {
+          const rowDate = parseDateOnly(row.date);
+          if (rowDate) {
+            if (rowDate < startBound || rowDate > endBound) {
+              return false;
+            }
+          }
+
           if (!inWindow(row, windowConfig)) {
             return false;
           }
@@ -170,8 +212,11 @@
       const windowLabel = (windowMap[windowSelect.value] || windowMap.recent).label;
       const selectedTags = getSelectedTags();
       const tagLabel = selectedTags.length ? `tags: ${selectedTags.join(", ")}` : "all tags";
+      const { startYear, endYear } = getYearBounds();
 
-      status.textContent = `${windowLabel} · ${tagLabel}`;
+      startYearLabel.textContent = `(${startYear})`;
+      endYearLabel.textContent = `(${endYear})`;
+      status.textContent = `${windowLabel} · ${tagLabel} · ${startYear}–${endYear}`;
     }
 
     function openPopup(datum, x, y) {
@@ -253,16 +298,20 @@
       Array.from(tagSelect.options).forEach((option) => {
         option.selected = false;
       });
-      renderChart();
+      syncYearLabels();
+    renderChart();
     });
     windowSelect.addEventListener("change", renderChart);
     tagSelect.addEventListener("change", renderChart);
+    startYearInput.addEventListener("input", renderChart);
+    endYearInput.addEventListener("input", renderChart);
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closePopup();
       }
     });
 
+    syncYearLabels();
     renderChart();
   }
 

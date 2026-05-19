@@ -207,6 +207,20 @@ img.rounded-image {
   min-width: 250px;
 }
 
+.oil-tracker-range-group {
+  display: grid;
+  gap: 10px;
+  min-width: 220px;
+}
+
+.oil-tracker-range-field {
+  min-width: 220px;
+}
+
+.oil-tracker-range {
+  width: 220px;
+}
+
 .oil-tracker-btn {
   padding: 8px 12px;
   border: 1px solid rgba(33, 25, 16, 0.14);

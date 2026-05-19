@@ -88,6 +88,8 @@ def main() -> int:
     start_date = "1974-01-01"
     prices_recent = prices[prices["date"] >= start_date].copy()
     events_recent = events_joined[events_joined["date"] >= start_date].copy()
+    min_year = int(prices["date"].dt.year.min())
+    max_year = int(prices["date"].dt.year.max())
     tag_options = sorted(
         {
             tag.strip()
@@ -186,6 +188,10 @@ def main() -> int:
         {
             "defaultWindow": "recent",
             "tagOptions": tag_options,
+            "minYear": min_year,
+            "maxYear": max_year,
+            "defaultStartYear": 1974,
+            "defaultEndYear": max_year,
         },
         ensure_ascii=False,
     )
@@ -202,6 +208,16 @@ def main() -> int:
         <option value="midEast2020s">2020s Middle East conflicts</option>
       </select>
     </label>
+    <div class="oil-tracker-range-group">
+      <label class="oil-tracker-field oil-tracker-range-field">
+        Start year <span data-oil-start-label></span>
+        <input class="oil-tracker-range" type="range" min="{min_year}" max="{max_year}" step="1" data-oil-start-year>
+      </label>
+      <label class="oil-tracker-field oil-tracker-range-field">
+        End year <span data-oil-end-label></span>
+        <input class="oil-tracker-range" type="range" min="{min_year}" max="{max_year}" step="1" data-oil-end-year>
+      </label>
+    </div>
     <label class="oil-tracker-field">
       Tags
       <select class="oil-tracker-select oil-tracker-tag-select" data-oil-tags multiple size="6">
