@@ -54,6 +54,17 @@ https://fred.stlouisfed.org/graph/fredgraph.csv?id=<SERIES_ID>
 
 This example defaults to FRED's spliced WTI series, which extends the monthly history back to 1946. If you want a modern-only daily series, you can switch to Brent or daily WTI.
 
+### How the event set is chosen
+
+The event list is curated, not exhaustive. I include an event when it has a plausible path to oil prices and enough documentation to explain the move. In practice that means:
+
+- a direct supply, demand, or geopolitics channel to crude prices
+- a recognizable market reaction or a credible expectation of one
+- a source I can point to, usually Reuters, EIA, or another primary market/history source
+- a date I can pin down to the announcement or shock day
+
+That keeps the chart focused on episodes that actually matter for price formation instead of every news item that happened to mention oil.
+
 ### Event-data structure
 
 The event schema is:

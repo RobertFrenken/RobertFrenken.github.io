@@ -16,6 +16,16 @@ OUT = ROOT / "_static" / "oil_price_tracker_widget.html"
 def main() -> int:
     alt.data_transformers.disable_max_rows()
 
+    def classify_event(tags: str) -> str:
+        tag_set = {tag.strip() for tag in str(tags).split(";") if tag.strip()}
+        if tag_set & {"COVID", "demand shock"}:
+            return "Demand shock"
+        if tag_set & {"OPEC+", "supply"}:
+            return "Supply shock"
+        if tag_set & {"Iran", "US-Iran", "Russia-Ukraine", "war", "sanctions", "Hormuz", "Middle East"}:
+            return "Geopolitics"
+        return "Other"
+
     benchmarks = {
         "WTI monthly (spliced)": {
             "series_id": "WTISPLC",
@@ -43,6 +53,7 @@ def main() -> int:
 
     events = pd.read_csv(ROOT / "posts" / "oil_price_tracker_events.csv", parse_dates=["date"])
     events["tags"] = events["tags"].fillna("")
+    events["event_group"] = events["tags"].apply(classify_event)
 
     prices_for_join = (
         prices[["date", "price_usd_per_barrel"]]
@@ -82,6 +93,7 @@ def main() -> int:
     ).dt.days.abs()
     events_joined["days_from_price_date"] = events_joined["days_from_price_date"].astype("Int64")
     events_joined["event"] = True
+    events_joined["event_group"] = events_for_join["event_group"].values
     events_joined["date"] = events_joined["price_date"]
     events_joined = events_joined.drop(columns=["price_date"])
 
@@ -130,10 +142,14 @@ def main() -> int:
         alt.Chart(events_joined).mark_point(
             filled=True,
             size=55,
-            color="#c1121f",
             stroke="white",
             strokeWidth=0.75,
         ).encode(
+            color=alt.Color(
+                "event_group:N",
+                title="Event cluster",
+                scale=alt.Scale(scheme="tableau10"),
+            ),
             x=alt.X("date:T", scale=alt.Scale(type="utc")),
             y="price_usd_per_barrel:Q",
             tooltip=tooltip_fields,
@@ -161,10 +177,14 @@ def main() -> int:
         alt.Chart(events_recent).mark_point(
             filled=True,
             size=85,
-            color="#c1121f",
             stroke="white",
             strokeWidth=0.75,
         ).encode(
+            color=alt.Color(
+                "event_group:N",
+                title="Event cluster",
+                scale=alt.Scale(scheme="tableau10"),
+            ),
             x=alt.X("date:T", scale=alt.Scale(type="utc")),
             y="price_usd_per_barrel:Q",
             opacity=alt.value(0.9),
@@ -180,6 +200,12 @@ def main() -> int:
         alt.vconcat(overview, detail)
         .resolve_scale(y="shared")
         .configure_axis(grid=True)
+        .configure_title(
+            font="IBM Plex Serif",
+            fontSize=15,
+            anchor="start",
+            color="#1f2937",
+        )
         .configure_view(strokeWidth=0)
     )
     base_spec = chart.to_dict()
