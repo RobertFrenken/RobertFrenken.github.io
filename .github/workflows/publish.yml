@@ -39,6 +39,8 @@ jobs:
         run: |
           typst compile --root . cv/cv.typ cv/Frenken_Robert_CV.pdf
           quarto render
+          mkdir -p _site/_static
+          cp -R _static/. _site/_static/
           cp cv/Frenken_Robert_CV.pdf _site/
 
       - name: Upload artifact

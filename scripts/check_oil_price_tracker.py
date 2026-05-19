@@ -11,6 +11,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 HTML = ROOT / "_site" / "posts" / "oil_price_tracker.html"
 WIDGET = ROOT / "_site" / "_static" / "oil_price_tracker_widget.html"
+VEGA = ROOT / "_site" / "_static" / "vendor" / "vega.min.js"
+VEGA_LITE = ROOT / "_site" / "_static" / "vendor" / "vega-lite.min.js"
+VEGA_EMBED = ROOT / "_site" / "_static" / "vendor" / "vega-embed.min.js"
 
 
 def fail(message: str) -> int:
@@ -66,6 +69,12 @@ def main() -> int:
         return fail(f"missing rendered file: {HTML}")
     if not WIDGET.exists():
         return fail(f"missing widget file: {WIDGET}")
+    if not VEGA.exists():
+        return fail(f"missing Vega vendor file: {VEGA}")
+    if not VEGA_LITE.exists():
+        return fail(f"missing Vega-Lite vendor file: {VEGA_LITE}")
+    if not VEGA_EMBED.exists():
+        return fail(f"missing Vega Embed vendor file: {VEGA_EMBED}")
 
     try:
         rendered = HTML.read_text(encoding="utf-8", errors="replace")
